@@ -1,13 +1,14 @@
 package com.catgame.CatGameWesbite;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
 
-@RestController
+
+@Controller
 public class Index {
     
-    @GetMapping("/index")
-    public String sayHello(){
-        return "HELLO WORLD";
+    @RequestMapping("/")
+    public String homepage(){
+        return "index";
     }
 }
