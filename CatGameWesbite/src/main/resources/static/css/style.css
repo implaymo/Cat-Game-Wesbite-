@@ -1,21 +1,44 @@
 /* src/main/resources/static/css/style.css */
 body {
-    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: yellow; /* Optional: background color for the body */
+    text-align: center;
 }
-
 
 .center-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;    /* Center vertically */
-    height: 100vh;          /* Full viewport height */
-    text-align: center;     /* Center text inside the div */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .content {
+    margin: 10px 0; /* Adds some space between the content blocks */
     padding: 20px;
     background-color: #f4f4f4;
     border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Makes the corners rounded */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
+}
+
+h1 {
+    color: blue; /* Change to any color you like */
+}
+
+p {
+    font-size: 1.2em;
+    color: #333; /* Optional: change text color */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for the image */
+    border: 1px solid #ccc; /* Optional: border around the image */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
 }
