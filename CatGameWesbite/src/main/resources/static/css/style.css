@@ -26,6 +26,17 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
 }
 
+.content-cat {
+    margin: 10px 0; /* Adds some space between the content blocks */
+    padding: 20px;
+}
+
+.content-cat img {
+    border: none;
+    border-radius: 10px; /* Optional: rounded corners for the image */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
+}
+
 h1 {
     color: blue; /* Change to any color you like */
 }
