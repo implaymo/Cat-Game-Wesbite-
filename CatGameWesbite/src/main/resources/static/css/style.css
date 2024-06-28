@@ -10,6 +10,7 @@ body {
 }
 
 .center-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +28,7 @@ body {
 }
 
 .content-cat {
+    position: absolute;
     margin: 10px 0; /* Adds some space between the content blocks */
     padding: 20px;
 }
