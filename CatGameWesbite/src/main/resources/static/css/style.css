@@ -9,24 +9,6 @@ body {
     text-align: center;
 }
 
-.center-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.content {
-    margin: 10px 0; /* Adds some space between the content blocks */
-    padding: 20px;
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
-    border-radius: 10px; /* Makes the corners rounded */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
-}
-
 .content-cat {
     position: absolute;
     margin: 10px 0; /* Adds some space between the content blocks */
@@ -36,16 +18,6 @@ body {
 .content-cat img {
     border: none;
     border-radius: 10px; /* Optional: rounded corners for the image */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
-}
-
-h1 {
-    color: blue; /* Change to any color you like */
-}
-
-p {
-    font-size: 1.2em;
-    color: #333; /* Optional: change text color */
 }
 
 img {
@@ -53,5 +25,11 @@ img {
     height: auto;
     border-radius: 10px; /* Rounded corners for the image */
     border: 1px solid #ccc; /* Optional: border around the image */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for better visual */
+}
+
+.content-new-cat{
+    border: none;
+    border-radius: 10px; 
+    position: absolute;
+    background-color: black;
 }
