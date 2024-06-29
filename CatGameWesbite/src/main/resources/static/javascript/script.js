@@ -2,20 +2,33 @@
 var id = null;
 
 function catClicked() {
+    var randomNumber = Math.floor(Math.random() * 2);
+    console.log(randomNumber)
     var newCat = createNewCat()
-    var catPos = 0;
+    var catPosX = window.innerWidth / 2;
+    var catPosY = window.innerHeight / 2;
     clearInterval(id);
-    id = setInterval(frame, 10);
+    id = setInterval(frame, 0.1);
     function frame() {
-        if (catPos >= 700) {
+        if (catPosX >= 1000) {
             console.log("Cat reach the limits.");
             clearInterval(id);
         }
         else {
-            console.log("Cat is going to move.");
-            catPos++;
-            newCat.style.left = catPos + 'px';
-            newCat.style.top = catPos + 'px';
+            if (randomNumber == 0) {
+                console.log("Cat is going to move.");
+                catPosX++;
+                catPosY++;
+                newCat.style.left = catPosX + 'px';
+                newCat.style.top = catPosY + 'px';
+            }
+            else {
+                console.log("Cat is going to move.");
+                catPosX++;
+                catPosY++;
+                newCat.style.right = catPosX + 'px';
+                newCat.style.bottom = catPosY + 'px';
+            }
         }
     }
 }
@@ -27,8 +40,6 @@ function createNewCat() {
     newCat.style.position = "absolute";
     newCat.width = 50;
     newCat.height = 50;
-    newCat.style.left = "100px";
-    newCat.style.top = "100px";
     var container = document.getElementById("new-cat-image")
     container.appendChild(newCat);
     console.log("Created New Cat Image");
