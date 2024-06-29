@@ -24,12 +24,11 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 10px; /* Rounded corners for the image */
-    border: 1px solid #ccc; /* Optional: border around the image */
 }
 
 .content-new-cat{
     border: none;
-    border-radius: 10px; 
     position: absolute;
     background-color: black;
 }
+
