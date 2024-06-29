@@ -2,6 +2,12 @@
 var id = null;
 
 function catClicked() {
+    var leftLimit = 0;
+    var topLimit = 0;
+    var rightLimit = window.innerWidth - 50;
+    var bottomLimit = window.innerHeight - 50;
+
+    
     var randomNumber = Math.floor(Math.random() * 2);
     console.log(randomNumber)
     var newCat = createNewCat()
@@ -10,7 +16,7 @@ function catClicked() {
     clearInterval(id);
     id = setInterval(frame, 0.1);
     function frame() {
-        if (catPosX >= 1000) {
+        if (catPosX >= rightLimit || catPosY >= bottomLimit || catPosX <= leftLimit || catPosY <= topLimit) {
             console.log("Cat reach the limits.");
             clearInterval(id);
         }
