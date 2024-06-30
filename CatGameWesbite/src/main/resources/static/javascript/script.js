@@ -2,11 +2,11 @@
 var id = null;
 var leftLimit = 0;
 var topLimit = 0;
-var rightLimit = window.innerWidth - 55;
-var bottomLimit = window.innerHeight - 55;
+var rightLimit = window.innerWidth;
+var bottomLimit = window.innerHeight;
 
 function catClicked() {   
-    var randomNumber = Math.floor(Math.random() * 2);
+    var randomNumber = Math.floor(Math.random() * 4);
     var newCat = createNewCat()
     var catPosX = window.innerWidth / 2;
     var catPosY = window.innerHeight / 2;
@@ -26,11 +26,23 @@ function catClicked() {
                 catPosY++;
                 newCat.style.left = catPosX + 'px';
             }
-            else {
+            else if (randomNumber == 1) {
                 console.log("Cat is going to move.");
                 catPosX++;
                 catPosY++;
                 newCat.style.right = catPosX + 'px';
+            }
+            else if (randomNumber == 2) {
+                console.log("Cat is going to move.");
+                catPosX++;
+                catPosY++;
+                newCat.style.bottom = catPosY + 'px';
+            }
+            else if (randomNumber == 3) {
+                console.log("Cat is going to move.");
+                catPosX++;
+                catPosY++;
+                newCat.style.top = catPosY + 'px';
             }
         }
     }
@@ -55,4 +67,9 @@ function createNewCat() {
 function removeNewCat(newCatId) {
     var catToRemove = document.getElementById(newCatId);
     catToRemove.remove();
+}
+
+function moveCat() {
+    catPosX++;
+    catPosY++;
 }
