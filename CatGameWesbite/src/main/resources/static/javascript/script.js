@@ -6,7 +6,8 @@ let rightLimit = window.innerWidth;
 let bottomLimit = window.innerHeight;
 let timesClick = 0;
 
-function catClicked() {   
+function catClicked() {
+    setInterval(countDown, 1000);
     timesClick++;
     let randomNumber = Math.floor(Math.random() * 4);
     let newCat = createNewCat()
@@ -68,3 +69,10 @@ function removeNewCat(newCatId) {
     let catToRemove = document.getElementById(newCatId);
     catToRemove.remove();
 }
+
+let time = 30;
+function countDown(){
+        time--;
+        console.log("TIMER: " + time);
+        document.getElementById("timer").innerHTML = time; 
+} 

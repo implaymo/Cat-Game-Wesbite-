@@ -6,7 +6,6 @@ body {
     height: 100vh;
     margin: 0;
     background-color: orange; /* Optional: background color for the body */
-    text-align: center;
 }
 
 .content-cat {
@@ -30,5 +29,13 @@ img {
     border: none;
     position: absolute;
     background-color: black;
+}
+
+h1 {
+    color: blue;
+    background-color: white;
+    text-align: center;
+    size: 50px;
+    border-radius: 10px;
 }
 
