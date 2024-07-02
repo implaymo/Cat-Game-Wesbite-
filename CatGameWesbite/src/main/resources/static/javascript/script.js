@@ -5,9 +5,14 @@ let topLimit = 0;
 let rightLimit = window.innerWidth;
 let bottomLimit = window.innerHeight;
 let timesClick = 0;
+let catPress = false;
+
+const myTimer = setInterval(countDown, 1000);
+
+
 
 function catClicked() {
-    setInterval(countDown, 1000);
+    catPress = true;
     timesClick++;
     let randomNumber = Math.floor(Math.random() * 4);
     let newCat = createNewCat()
@@ -50,7 +55,6 @@ function catClicked() {
 }
 
 catId = 0;
-
 function createNewCat() {
     let newCat = document.createElement("img");
     newCat.src = "cat.png";
@@ -70,9 +74,16 @@ function removeNewCat(newCatId) {
     catToRemove.remove();
 }
 
-let time = 30;
+let time = 31;
 function countDown(){
         time--;
         console.log("TIMER: " + time);
-        document.getElementById("timer").innerHTML = time; 
+        document.getElementById("timer").innerHTML = time;  
+        if (time === 0) {
+            stopTimer()
+        }
 } 
+
+function stopTimer() {
+    clearInterval(myTimer);
+}
