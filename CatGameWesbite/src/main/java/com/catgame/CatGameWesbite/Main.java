@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 
 
 @Controller
-public class Index {
+public class Main {
     
     @RequestMapping("/")
     public String homepage(){
@@ -15,5 +15,10 @@ public class Index {
     @RequestMapping("/registration")
     public String registration(){
         return "registration";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
     }
 }
