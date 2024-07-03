@@ -76,9 +76,11 @@ function removeNewCat(newCatId) {
 
 let time = 31;
 function countDown(){
-        time--;
-        console.log("TIMER: " + time);
-        document.getElementById("timer").innerHTML = time;  
+        if (timesClick >= 1){
+            time--;
+            console.log("TIMER: " + time);
+            document.getElementById("timer").innerHTML = time;  
+        }
         if (time === 0) {
             stopTimer()
         }

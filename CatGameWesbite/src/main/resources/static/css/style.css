@@ -32,10 +32,8 @@ img {
 }
 
 h1 {
-    color: blue;
-    background-color: white;
+    color: black;
+    font-size: 100px;
     text-align: center;
-    size: 50px;
-    border-radius: 10px;
 }
 
