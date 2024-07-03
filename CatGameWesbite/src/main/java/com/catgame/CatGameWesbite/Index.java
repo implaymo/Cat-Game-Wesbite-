@@ -11,4 +11,9 @@ public class Index {
     public String homepage(){
         return "index";
     }
+    
+    @RequestMapping("/registration")
+    public String registration(){
+        return "registration";
+    }
 }
