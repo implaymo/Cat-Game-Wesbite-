@@ -85,7 +85,7 @@ function removeNewCat(newCatId) {
     catToRemove.remove();
 }
 
-let time = 31;
+let time = 30;
 function countDown(){
         if (timesClick >= 1){
             time--;
@@ -93,10 +93,17 @@ function countDown(){
             document.getElementById("timer").innerHTML = time;  
         }
         if (time === 0) {
-            stopTimer()
+            stopTimer();
         }
 } 
 
 function stopTimer() {
     clearInterval(myTimer);
+}
+
+function resetGame() {
+    time = 30;
+    timesClick = 0;
+    document.getElementById("timer").innerText = 30;
+    countDown();
 }
