@@ -12,8 +12,10 @@ const myTimer = setInterval(countDown, 1000);
 
 
 function countClicks(){
-    timesClick ++;
-    console.log("TIMES CLICKED: " + timesClick);
+    if (time > 0){
+        timesClick ++;
+        console.log("TIMES CLICKED: " + timesClick);
+    }
 }
 
 function highscore() {
