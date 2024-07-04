@@ -11,7 +11,14 @@ const myTimer = setInterval(countDown, 1000);
 
 
 
-function catClicked() {
+function countClicks(){
+    timesClick ++;
+    console.log("TIMES CLICKED: " + timesClick);
+}
+
+function highscore() {
+// NOT BEING USED AT THE MOMENT. Needs new implementation. GOAL is to create an explosion of small cats in random directions if user gets a new highscore
+
     catPress = true;
     timesClick++;
     let randomNumber = Math.floor(Math.random() * 4);
@@ -56,6 +63,7 @@ function catClicked() {
 
 catId = 0;
 function createNewCat() {
+    // NOT BEING USED AT THE MOMENT. 
     let newCat = document.createElement("img");
     newCat.src = "cat.png";
     newCat.id = "new-cat-image " + catId;
@@ -70,6 +78,7 @@ function createNewCat() {
 }
 
 function removeNewCat(newCatId) {
+    // NOT BEING USED AT THE MOMENT. 
     let catToRemove = document.getElementById(newCatId);
     catToRemove.remove();
 }
