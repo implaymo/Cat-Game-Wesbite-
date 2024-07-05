@@ -4,14 +4,15 @@ let leftLimit = 0;
 let topLimit = 0;
 let rightLimit = window.innerWidth;
 let bottomLimit = window.innerHeight;
-let timesClick = 0;
+let timesClick = 1;
 let catPress = false;
 
 const myTimer = setInterval(countDown, 1000);
 
 
-
 function countClicks(){
+    liveScore();
+
     if (time > 0){
         timesClick ++;
         console.log("TIMES CLICKED: " + timesClick);
@@ -87,7 +88,7 @@ function removeNewCat(newCatId) {
 
 let time = 30;
 function countDown(){
-        if (timesClick >= 1){
+        if (timesClick >= 2){
             time--;
             console.log("TIMER: " + time);
             document.getElementById("timer").innerHTML = time;  
@@ -106,4 +107,8 @@ function resetGame() {
     timesClick = 0;
     document.getElementById("timer").innerText = 30;
     countDown();
+}
+
+function liveScore() {
+    document.getElementById("live-score").innerText = "Score: " + timesClick;
 }
