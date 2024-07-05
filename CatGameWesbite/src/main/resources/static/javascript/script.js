@@ -106,6 +106,7 @@ function resetGame() {
     time = 30;
     timesClick = 0;
     document.getElementById("timer").innerText = 30;
+    document.getElementById("live-score").innerText = "Score: 0"
     countDown();
 }
 
