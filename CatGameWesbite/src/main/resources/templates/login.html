@@ -11,10 +11,10 @@
 <body>
   <div class="wrapper">
     <header>Login Form</header>
-    <form action="#">
+    <form name="login" method="POST" action="/loginServlet">
       <div class="field email">
         <div class="input-area">
-          <input type="text" placeholder="Email Address">
+          <input name="email" type="text" placeholder="Email Address">
           <i class="icon fas fa-envelope"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
@@ -22,7 +22,7 @@
       </div>
       <div class="field password">
         <div class="input-area">
-          <input type="password" placeholder="Password">
+          <input name="passowrd" type="password" placeholder="Password">
           <i class="icon fas fa-lock"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
