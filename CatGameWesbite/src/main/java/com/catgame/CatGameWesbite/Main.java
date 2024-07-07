@@ -1,16 +1,5 @@
 package com.catgame.CatGameWesbite;
-
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.rmi.ServerException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,6 +12,7 @@ public class Main {
     @RequestMapping("/")
     public String homepage(){
         database.DatabaseConnection();
+        database.createTable();
         return "index";
     }
     

@@ -1,11 +1,12 @@
 package com.catgame.CatGameWesbite;
 
 import org.springframework.stereotype.Service;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
+
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.SQLException;  
+import java.sql.Statement;  
+
 
 @Service
 public class Database {
@@ -29,6 +30,22 @@ public class Database {
         }
     }
 
+    public void createTable() {
+        var sql = "CREATE TABLE IF NOT EXISTS users ("
+            + " id INTEGER PRIMARY KEY,"
+            + " name TEXT NOT NULL,"
+            + " email TEXT NOT NULL,"
+            + " password TEXT NOT NULL,"
+            + " highscore REAL"
+            + ");";
 
+        try{  
+            Connection conn = DriverManager.getConnection(url);  
+            Statement stmt = conn.createStatement();  
+            stmt.execute(sql);  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+    }
     
 }
