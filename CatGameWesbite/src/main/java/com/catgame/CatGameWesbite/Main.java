@@ -11,7 +11,6 @@ public class Main {
     
     @RequestMapping("/")
     public String homepage(){
-        database.DatabaseConnection();
         return "index";
     }
     
