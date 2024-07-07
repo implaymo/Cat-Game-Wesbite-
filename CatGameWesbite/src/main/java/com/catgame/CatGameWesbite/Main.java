@@ -12,7 +12,6 @@ public class Main {
     @RequestMapping("/")
     public String homepage(){
         database.DatabaseConnection();
-        database.createTable();
         return "index";
     }
     
