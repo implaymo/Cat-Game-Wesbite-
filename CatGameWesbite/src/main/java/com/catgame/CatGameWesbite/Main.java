@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class Main {
-    @Autowired
-    private Database database;
     
     @RequestMapping("/")
     public String homepage(){
