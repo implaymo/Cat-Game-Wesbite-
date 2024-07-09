@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
-<html lang="en" dir="ltr">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,11 @@
 <body>
   <div class="wrapper">
     <h2>Registration Form</h2>
+    <p></p>
+    <div th:if="${errorMessage}" style="color: red;">
+      <p th:text="${errorMessage}"></p>
+    </div>
+    
     <form name="registration" action="/registrationServlet" method="POST">
       <div class="input-box">
         <input  name="name" type="text" placeholder="Enter your name" required>
@@ -34,6 +39,7 @@
         <h3>Already have an account? <a href="/login">Login now</a></h3>
       </div>
     </form>
+
   </div>
 </body>
 </html>
