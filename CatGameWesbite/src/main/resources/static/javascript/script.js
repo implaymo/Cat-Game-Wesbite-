@@ -113,3 +113,14 @@ function resetGame() {
 function liveScore() {
     document.getElementById("live-score").innerText = "Score: " + timesClick;
 }
+
+
+function timerErrorMessage() {
+        var errorMessageDiv = document.getElementById('errorMessage');
+        if (errorMessageDiv) {
+            setTimeout(function() {
+                errorMessageDiv.style.display = 'none';
+            }, 5000);
+        };
+
+}

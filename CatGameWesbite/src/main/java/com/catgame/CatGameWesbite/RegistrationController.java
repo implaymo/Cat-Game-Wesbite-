@@ -1,9 +1,6 @@
 package com.catgame.CatGameWesbite;
 
 import java.io.IOException;
-
-import javax.xml.crypto.Data;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +26,7 @@ public class RegistrationController {
             database.insertUser(name, email, hashPassword, 0);
             return "redirect:/";  
         }
-        else 
+        else
         {
             System.out.println("Easy password. Try again.");
             request.setAttribute("errorMessage", "Passwords do not match or are too short.");

@@ -10,8 +10,8 @@
 <body>
   <div class="wrapper">
     <h2>Registration Form</h2>
-    <p></p>
-    <div th:if="${errorMessage}" style="color: red;">
+
+    <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
       <p th:text="${errorMessage}"></p>
     </div>
     
@@ -41,5 +41,12 @@
     </form>
 
   </div>
+  <script src="/javascript/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        timerErrorMessage();
+    });
+  </script>
+
 </body>
 </html>
