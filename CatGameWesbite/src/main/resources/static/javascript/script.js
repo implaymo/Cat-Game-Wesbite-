@@ -122,5 +122,5 @@ function timerErrorMessage() {
                 errorMessageDiv.style.display = 'none';
             }, 5000);
         };
-
+        
 }
