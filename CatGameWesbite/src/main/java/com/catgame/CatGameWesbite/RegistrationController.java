@@ -23,6 +23,8 @@ public class RegistrationController {
         String email = request.getParameter("email");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
+        String checkboxValue = request.getParameter("checkbox");
+        System.out.println(checkboxValue);
         Pattern pattern = Pattern.compile(REQUIRED_PARAMS, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(password1);
 
@@ -43,6 +45,11 @@ public class RegistrationController {
 
         if (!matcher.matches()) {
             request.setAttribute("errorMessage", "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+            return "registration";  
+        }
+
+        if (checkboxValue == null) {
+            request.setAttribute("errorMessage", "You must agree with the terms and conditions.");
             return "registration";  
         }
 
