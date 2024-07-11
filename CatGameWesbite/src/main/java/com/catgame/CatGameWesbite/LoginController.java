@@ -11,9 +11,11 @@ public class LoginController {
 
     @PostMapping("/loginServlet")
     public String handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Database database = new Database();
         String email = request.getParameter("email");
-        String password = request.getParameter("password1");
-        return "redirect:/";  
+        String password = request.getParameter("password");
+        database.searchUser(email, password);
+        return "login";  
     }
 }
 

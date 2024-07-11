@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;  
 import java.sql.Statement;
+import java.util.concurrent.ExecutionException;
 
 
 
@@ -79,6 +80,21 @@ public class Database {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void searchUser(String email, String password) {
+        String sql = "SELECT email, password FROM users WHERE email = ? AND password = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(ps);
         }
     }
 }
