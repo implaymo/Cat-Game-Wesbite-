@@ -5,9 +5,12 @@ import org.springframework.stereotype.Service;
 import java.sql.Connection;  
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;  
 import java.sql.Statement;
 import java.util.concurrent.ExecutionException;
+
+import javax.naming.spi.DirStateFactory.Result;
 
 
 
@@ -84,17 +87,18 @@ public class Database {
     }
 
     public void searchUser(String email, String password) {
-        String sql = "SELECT email, password FROM users WHERE email = ? AND password = ?";
-        PreparedStatement ps = null;
+        String sql = "SELECT email, password FROM users WHERE email = email AND password = password";
         try {
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ps.executeQuery();
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                String passwordUser = rs.getString("password");
+                System.out.println("USER PASSWORD FOUND " + passwordUser);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            close(ps);
-        }
+        } 
     }
 }
