@@ -8,9 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;  
 import java.sql.Statement;
-import java.util.concurrent.ExecutionException;
-
-import javax.naming.spi.DirStateFactory.Result;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 
@@ -86,19 +84,33 @@ public class Database {
         }
     }
 
-    public void searchUser(String email, String password) {
-        String sql = "SELECT email, password FROM users WHERE email = email AND password = password";
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs;
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                String passwordUser = rs.getString("password");
-                System.out.println("USER PASSWORD FOUND " + passwordUser);
+    public boolean searchUser(String userEmail, String userPassword) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+            ps.setString(1, userEmail);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String dbPassword = rs.getString("password");
+                    if (encoder.matches(userPassword, dbPassword)) {
+                        System.out.println("USER LOGGED IN ");
+                        return true;  
+                    } else {
+                        System.out.println("WRONG PASSWORD");
+                        return false;
+                    }
+
+                } else {
+                    System.out.println("User not found");
+                    return false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
+        return false;
     }
 }
