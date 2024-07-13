@@ -18,6 +18,7 @@ public class Database {
     String url = "jdbc:sqlite:my.db";
     Connection conn;
 
+
     public Database() {
         conn = DatabaseConnection();
         
@@ -84,25 +85,18 @@ public class Database {
         }
     }
 
-    public boolean searchUser(String userEmail, String userPassword) {
+    public String searchUser(String userEmail, String userPassword) {
         String sql = "SELECT * FROM users WHERE email = ?";
+        String dbPassword;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
             ps.setString(1, userEmail);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    String dbPassword = rs.getString("password");
-                    if (encoder.matches(userPassword, dbPassword)) {
-                        System.out.println("USER LOGGED IN ");
-                        return true;  
-                    } else {
-                        System.out.println("WRONG PASSWORD");
-                        return false;
-                    }
-
+                    System.out.println("User found.");
+                    dbPassword = rs.getString("password");
+                    return dbPassword;
                 } else {
-                    System.out.println("User not found");
-                    return false;
+                    System.out.println("User not found.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -111,6 +105,17 @@ public class Database {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
+    }
+
+    public boolean validatePassword(String userPassword, String dbPassword) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+        if (encoder.matches(userPassword, dbPassword)) {
+            System.out.println("PASSWORD MATCH");
+            return true;
+        } else {
+            System.out.println("WRONG PASSWORD");
+            return false;
+        }
     }
 }

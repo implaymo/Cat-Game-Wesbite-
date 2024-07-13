@@ -11,6 +11,11 @@
 <body>
   <div class="wrapper">
     <header>Login Form</header>
+    
+    <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
+      <p th:text="${errorMessage}"></p>
+    </div>
+    
     <form name="login" method="POST" action="/loginServlet">
       <div class="field email">
         <div class="input-area">
