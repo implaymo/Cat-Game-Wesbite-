@@ -8,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;  
 import java.sql.Statement;
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -17,6 +21,8 @@ public class Database {
 
     String url = "jdbc:sqlite:my.db";
     Connection conn;
+    private static final Logger logger = LogManager.getLogger(Database.class);
+
 
 
     public Database() {
@@ -29,12 +35,11 @@ public class Database {
             conn = DriverManager.getConnection(url);
             if (conn != null) {
                 var meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("Connection created with database.");
+                logger.info("The driver name is " + meta.getDriverName());
+                logger.info("Connection created with database.");
             } 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return conn;
     }
@@ -51,8 +56,9 @@ public class Database {
         try{  
             Statement stmt = conn.createStatement();  
             stmt.execute(sql);  
+            logger.info("Table created.");
         } catch (SQLException e) {  
-            System.out.println(e.getMessage());  
+            logger.error(e.getMessage());
         }  
     }
     
@@ -66,9 +72,9 @@ public class Database {
             ps.setString(3, password);
             ps.setInt(4, highscore);
             ps.executeUpdate();
-            System.out.println("IT WORKED, NEW USER ADDED");
+            logger.info("IT WORKED, NEW USER ADDED");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         finally{
             close(ps);
@@ -81,7 +87,7 @@ public class Database {
                 statement.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -92,14 +98,12 @@ public class Database {
             ps.setString(1, userEmail);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    System.out.println("User found.");
+                    logger.info("User found.");
                     dbPassword = rs.getString("password");
                     return dbPassword;
-                } else {
-                    System.out.println("User not found.");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
 
         } catch (Exception e) {
@@ -111,10 +115,10 @@ public class Database {
     public boolean validatePassword(String userPassword, String dbPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
         if (encoder.matches(userPassword, dbPassword)) {
-            System.out.println("PASSWORD MATCH");
+            logger.info("PASSWORD MATCH");
             return true;
         } else {
-            System.out.println("WRONG PASSWORD");
+            logger.warn("WRONG PASSWORD");
             return false;
         }
     }
