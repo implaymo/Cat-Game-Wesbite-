@@ -35,3 +35,6 @@ build/
 
 ### Database ###
 my.db
+
+### environmental variables file ###
+config.properties
