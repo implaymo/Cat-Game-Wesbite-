@@ -32,6 +32,7 @@
         <!-- Application Loggers -->
         <Logger name="com.catgame.CatGameWesbite" level="info" additivity="false">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
             <AppenderRef ref="RollingFile"/>
         </Logger>
     </Loggers>
