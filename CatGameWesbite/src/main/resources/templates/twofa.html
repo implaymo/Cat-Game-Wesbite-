@@ -1,11 +1,9 @@
 <form action="/authSuccess" method="POST">
     <div>
-          
-    <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
-      <p th:text="${errorMessage}"></p>
-    </div>
-
       <label for="token">Please enter the code you were sent:</label>
+      <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
+        <p th:text="${errorMessage}"></p>
+      </div>
       <input type="text" name="token" id="token" />
     </div>
     <button type="submit">Check token</button>
