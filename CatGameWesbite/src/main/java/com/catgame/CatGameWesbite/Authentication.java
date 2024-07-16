@@ -47,7 +47,6 @@ public class Authentication {
         while (true) {
             String code = getTOTPCode(secretKey);
             if (!code.equals(lastCode)) {
-                System.out.println(code);
                 logger.info("Code created success.");
                 return code;
             }
