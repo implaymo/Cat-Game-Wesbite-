@@ -3101,3 +3101,32 @@ org.attoparser.ParseException: (Line = 9, Column = 38) Malformed markup: Attribu
 2024-07-16 09:53:03 INFO  Authentication:35 - Secret key get successfully.
 2024-07-16 09:53:03 INFO  Authentication:50 - Code created success.
 2024-07-16 09:53:03 ERROR AuthController:32 - User provided a wrong code.
+2024-07-16 10:03:09 INFO  CatGameWesbiteApplication:50 - Starting CatGameWesbiteApplication using Java 22.0.1 with PID 332 (C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite\target\classes started by HP in C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite)
+2024-07-16 10:03:09 INFO  CatGameWesbiteApplication:654 - No active profile set, falling back to 1 default profile: "default"
+2024-07-16 10:03:09 INFO  DevToolsPropertyDefaultsPostProcessor:252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-07-16 10:03:09 INFO  DevToolsPropertyDefaultsPostProcessor:252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-07-16 10:03:11 INFO  TomcatWebServer:111 - Tomcat initialized with port 8081 (http)
+2024-07-16 10:03:11 INFO  Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2024-07-16 10:03:11 INFO  StandardService:173 - Starting service [Tomcat]
+2024-07-16 10:03:11 INFO  StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-16 10:03:11 INFO  [/]:173 - Initializing Spring embedded WebApplicationContext
+2024-07-16 10:03:11 INFO  ServletWebServerApplicationContext:296 - Root WebApplicationContext: initialization completed in 1625 ms
+2024-07-16 10:03:11 INFO  Authentication:35 - Secret key get successfully.
+2024-07-16 10:03:11 INFO  Database:38 - The driver name is SQLite JDBC
+2024-07-16 10:03:11 INFO  Database:39 - Connection created with database.
+2024-07-16 10:03:11 INFO  WelcomePageHandlerMapping:59 - Adding welcome page template: index
+2024-07-16 10:03:12 INFO  OptionalLiveReloadServer:59 - LiveReload server is running on port 35729
+2024-07-16 10:03:12 INFO  Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-8081"]
+2024-07-16 10:03:12 INFO  TomcatWebServer:243 - Tomcat started on port 8081 (http) with context path '/'
+2024-07-16 10:03:12 INFO  CatGameWesbiteApplication:56 - Started CatGameWesbiteApplication in 3.605 seconds (process running for 4.862)
+2024-07-16 10:03:15 INFO  [/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-16 10:03:15 INFO  DispatcherServlet:532 - Initializing Servlet 'dispatcherServlet'
+2024-07-16 10:03:15 INFO  DispatcherServlet:554 - Completed initialization in 16 ms
+2024-07-16 10:03:22 INFO  Database:38 - The driver name is SQLite JDBC
+2024-07-16 10:03:22 INFO  Database:39 - Connection created with database.
+2024-07-16 10:03:22 INFO  Database:101 - User found.
+2024-07-16 10:03:22 INFO  Database:118 - PASSWORD MATCH
+2024-07-16 10:03:22 INFO  LoginController:26 - User found and password match.
+2024-07-16 10:03:36 INFO  Authentication:35 - Secret key get successfully.
+2024-07-16 10:03:36 INFO  Authentication:50 - Code created success.
+2024-07-16 10:03:36 INFO  AuthController:27 - Auth Codes match.
