@@ -2,6 +2,9 @@ package com.catgame.CatGameWesbite;
 
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.taimos.totp.TOTP;
 
 import java.io.FileInputStream;
@@ -12,6 +15,9 @@ import java.util.Properties;
 
 
 public class Authentication {
+
+    private static final Logger logger = LogManager.getLogger(Authentication.class);
+
 
     String secretKey;
     Properties properties = new Properties();
@@ -25,28 +31,32 @@ public class Authentication {
         try (InputStream input = new FileInputStream("config.properties")) {
             properties.load(input);
             key = properties.getProperty("SECRET_KEY");
-            System.out.println("Loaded secret key: " + secretKey);
+            if (key != null) {
+                logger.info("Secret key get successfully.");
+            }
         }   catch (IOException ex){
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         }
-        System.out.println("THIS IS THE KEY " + key);
         return key;
     }
 
 
     public String getCode () {
-        System.out.println("THIS IS THE GET SECRET KEY: " +  getSecretKey());
         secretKey = getSecretKey();
         String lastCode = null; 
         while (true) {
             String code = getTOTPCode(secretKey);
             if (!code.equals(lastCode)) {
                 System.out.println(code);
+                logger.info("Code created success.");
+                return code;
             }
             lastCode = code;
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {};
+            } catch (InterruptedException e) {
+                logger.error(e.getMessage());
+            };
         }
     }
 

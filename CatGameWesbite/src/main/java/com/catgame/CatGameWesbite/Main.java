@@ -24,4 +24,9 @@ public class Main {
     public String login(){
         return "login";
     }
+
+    @RequestMapping("/twofacauth")
+    public String auth(){
+        return "twofa";
+    }
 }

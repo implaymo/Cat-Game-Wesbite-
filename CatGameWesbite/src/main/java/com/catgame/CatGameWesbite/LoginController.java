@@ -18,15 +18,13 @@ public class LoginController {
     @PostMapping("/loginServlet")
     public String handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database database = new Database();
-        Authentication auth = new Authentication();
         String email = request.getParameter("email");
         String userPassword = request.getParameter("password");
         String dbPassword = database.searchUser(email, userPassword);
         if (dbPassword != null) {
             if (database.validatePassword(userPassword, dbPassword)) {
-                logger.info("User found and logged in");
-                auth.getCode();
-                return "2fa";
+                logger.info("User found and password match.");
+                return "redirect:/twofacauth";
             } 
             else {
                 request.setAttribute("errorMessage", "Invalid Credentials.");
@@ -40,4 +38,5 @@ public class LoginController {
             return "login"; 
         } 
     }
+
 }
