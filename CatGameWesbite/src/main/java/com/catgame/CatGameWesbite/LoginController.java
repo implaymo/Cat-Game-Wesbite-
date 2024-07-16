@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class LoginController {
 
     private static final Logger logger = LogManager.getLogger(LoginController.class);
+    String companyName = "Cat Game Website";
 
     @PostMapping("/loginServlet")
     public String handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
