@@ -24,12 +24,14 @@ public class AuthController {
     public String handleAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String inputCode = request.getParameter("token");
         String authCode = Authentication.getCode();
+        /// THE FOLLOWING CODE WAS JUST FOR TESTING, NEED TO FIND BETTER PLACE TO SETUP
         String barCodeUrl = Authentication.getGoogleAuthenticatorBarCode(Authentication.secretKey, "badjoras", "cat");
         try {
                 Authentication.createQRCode(barCodeUrl, "qr_code.png", 250, 250);
             } catch (WriterException e) {
                 e.printStackTrace(); 
             }
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (authCode != null) {
             if (authCode.equals(inputCode)){
                 logger.info("Auth Codes match.");
