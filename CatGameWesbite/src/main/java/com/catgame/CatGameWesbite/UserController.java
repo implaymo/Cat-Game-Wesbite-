@@ -1,26 +1,36 @@
 package com.catgame.CatGameWesbite;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
+
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.mindrot.jbcrypt.*;
 
 
 @Controller
-public class RegistrationController {
+public class UserController {
+        
+    @GetMapping(value = "/registration")
+    public String registration(){
+        return "registration-page";
+    }
 
     private static String REQUIRED_PARAMS = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$";
-    private static final Logger logger = LogManager.getLogger(RegistrationController.class);
+    private static final Logger logger = LogManager.getLogger(UserController.class);
 
 
-    @PostMapping("/registrationServlet")
+    @PostMapping("/registration")
     public String handleRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database database = new Database();
 
@@ -35,31 +45,31 @@ public class RegistrationController {
         if (password1 == null || password2 == null) {
             request.setAttribute("errorMessage", "Passwords must be filled.");
             logger.warn("Empty password.");
-            return "registration";  
+            return "registration-page";  
         }
 
         if (!password1.equals(password2)) {
             request.setAttribute("errorMessage", "Passwords must match.");
             logger.warn("Passwords dont match.");
-            return "registration";
+            return "registration-page";
         }
 
         if (password1.length() < 8) {
             request.setAttribute("errorMessage", "Password needs to have at least 8 characters long");
             logger.warn("Password is too short.");
-            return "registration"; 
+            return "registration-page"; 
         }
 
         if (!matcher.matches()) {
             request.setAttribute("errorMessage", "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
             logger.warn("Password missing all the requirements.");
-            return "registration";  
+            return "registration-page";  
         }
 
         if (checkboxValue == null) {
             request.setAttribute("errorMessage", "You must agree with the terms and conditions.");
             logger.warn("User didn't agreed with terms and conditions.");
-            return "registration";  
+            return "registration-page";  
         }
 
         String hashPassword = BCrypt.hashpw(password1, BCrypt.gensalt());
@@ -67,5 +77,35 @@ public class RegistrationController {
         logger.info("Registration done successfully.");
         return "redirect:/";          
     }
-}
 
+
+    @GetMapping("/login")
+    public String login(){
+        return "login-page";
+    }
+
+    String companyName = "Cat Game Website";
+    @PostMapping("/login")
+    public String handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Database database = new Database();
+        String email = request.getParameter("email");
+        String userPassword = request.getParameter("password");
+        String dbPassword = database.searchUser(email, userPassword);
+        
+        if (dbPassword != null && database.validatePassword(userPassword, dbPassword)) {
+            logger.info("User found and password match.");
+            return "redirect:/twofacauth"; 
+        } else {
+            request.setAttribute("errorMessage", "Invalid Credentials.");
+            logger.warn("Invalid credentials");
+            return "login-page";
+        }
+    }
+        
+
+
+    @RequestMapping("/twofacauth")
+    public String auth(){
+        return "twofa";
+    }
+}

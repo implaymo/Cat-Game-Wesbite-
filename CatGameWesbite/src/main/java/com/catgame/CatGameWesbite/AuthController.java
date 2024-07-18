@@ -16,18 +16,18 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class AuthController {
     private static final Logger logger = LogManager.getLogger(AuthController.class);
-    Authentication auth = new Authentication();
+    TwoFactorAuth auth = new TwoFactorAuth();
     
 
 
     @PostMapping("/authSuccess")
     public String handleAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String inputCode = request.getParameter("token");
-        String authCode = Authentication.getCode();
-        /// THE FOLLOWING CODE WAS JUST FOR TESTING, NEED TO FIND BETTER PLACE TO SETUP
-        String barCodeUrl = Authentication.getGoogleAuthenticatorBarCode(Authentication.secretKey, "badjoras", "cat");
+        String authCode = TwoFactorAuth.getCode();
+        /// THE FOLLOWING CODE WAS JUST FOR TESTING, NEED TO FIND BETTER PLACE TO SETUP. IT GIVES A QRCODE SO USER CAN ACTIVATE 2FA
+        String barCodeUrl = TwoFactorAuth.getGoogleAuthenticatorBarCode(TwoFactorAuth.secretKey, "badjoras", "cat");
         try {
-                Authentication.createQRCode(barCodeUrl, "qr_code.png", 250, 250);
+                TwoFactorAuth.createQRCode(barCodeUrl, "qr_code.png", 250, 250);
             } catch (WriterException e) {
                 e.printStackTrace(); 
             }
@@ -43,7 +43,7 @@ public class AuthController {
             }
         }
         else {
-            logger.error("authCode is Null. Fix Authentication.java");
+            logger.error("authCode is Null. Fix TwoFactorAuth.java");
         }
         return "twofa";
     }

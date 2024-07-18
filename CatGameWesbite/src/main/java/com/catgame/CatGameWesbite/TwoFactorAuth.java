@@ -23,15 +23,15 @@ import java.util.Properties;
 import java.net.URLEncoder;
 
 
-public class Authentication {
+public class TwoFactorAuth {
 
-    private static final Logger logger = LogManager.getLogger(Authentication.class);
+    private static final Logger logger = LogManager.getLogger(TwoFactorAuth.class);
 
 
     static String secretKey;
     static Properties properties = new Properties();
 
-    public Authentication() {
+    public TwoFactorAuth() {
         secretKey = getSecretKey();
     }
 
@@ -49,6 +49,12 @@ public class Authentication {
         return key;
     }
 
+    public static String getTOTPCode(String secretKey) {
+		Base32 base32 = new Base32();
+		byte[] bytes = base32.decode(secretKey);
+		String hexKey = Hex.encodeHexString(bytes);
+		return TOTP.getOTP(hexKey);
+	}
 
     public static String getCode () {
         secretKey = getSecretKey();
@@ -68,12 +74,7 @@ public class Authentication {
         }
     }
 
-	public static String getTOTPCode(String secretKey) {
-		Base32 base32 = new Base32();
-		byte[] bytes = base32.decode(secretKey);
-		String hexKey = Hex.encodeHexString(bytes);
-		return TOTP.getOTP(hexKey);
-	}
+
 
 
     public static String getGoogleAuthenticatorBarCode(String secretKey, String account, String issuer) {
@@ -87,12 +88,6 @@ public class Authentication {
         }
     }
 
-    public static void testQRCode (){
-        String email = "test@gmail.com";
-        String companyName = "Cat Game Website";
-        String barCodeUrl = getGoogleAuthenticatorBarCode(secretKey, email, companyName);
-        System.out.println("BAR CODE: " + barCodeUrl);
-    }
     
     public static void createQRCode(String barCodeData, String filePath, int height, int width)
         throws WriterException, IOException {
