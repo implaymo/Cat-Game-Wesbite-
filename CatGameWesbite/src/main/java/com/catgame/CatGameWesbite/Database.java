@@ -1,18 +1,16 @@
 package com.catgame.CatGameWesbite;
 
-import org.springframework.stereotype.Service;
-
-import java.sql.Connection;  
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;  
+import java.sql.SQLException;
 import java.sql.Statement;
-
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 
 
@@ -20,17 +18,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Database {
 
     String url = "jdbc:sqlite:my.db";
-    Connection conn;
+    private Connection conn;
     private static final Logger logger = LogManager.getLogger(Database.class);
 
 
 
     public Database() {
-        conn = DatabaseConnection();
-        
+        conn = databaseConnection();
     }
 
-    public Connection DatabaseConnection(){
+    public Connection databaseConnection(){
         try {
             conn = DriverManager.getConnection(url);
             if (conn != null) {
@@ -53,8 +50,7 @@ public class Database {
             + " highscore REAL"
             + ");";
 
-        try{  
-            Statement stmt = conn.createStatement();  
+        try (Statement stmt = conn.createStatement()){  
             stmt.execute(sql);  
             logger.info("Table created.");
         } catch (SQLException e) {  
@@ -64,9 +60,7 @@ public class Database {
     
     public void insertUser(String name, String email, String password, Integer highscore) {
         String sql = "INSERT INTO users(name, email, password, highscore) VALUES (?, ?, ?, ?)";
-        PreparedStatement ps = null;
-        try {
-            ps = conn.prepareStatement(sql);
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, password);
@@ -76,22 +70,9 @@ public class Database {
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
-        finally{
-            close(ps);
-        }
     }
 
-    public static void close(Statement statement) {
-        try {
-            if (statement != null) {
-                statement.close();
-            }
-        } catch (SQLException e) {
-            logger.error(e.getMessage());
-        }
-    }
-
-    public String searchUser(String userEmail, String userPassword) {
+    public String searchUser(String userEmail) {
         String sql = "SELECT * FROM users WHERE email = ?";
         String dbPassword;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {

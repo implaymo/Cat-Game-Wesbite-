@@ -90,7 +90,7 @@ public class UserController {
         Database database = new Database();
         String email = request.getParameter("email");
         String userPassword = request.getParameter("password");
-        String dbPassword = database.searchUser(email, userPassword);
+        String dbPassword = database.searchUser(email);
         
         if (dbPassword != null && database.validatePassword(userPassword, dbPassword)) {
             logger.info("User found and password match.");
