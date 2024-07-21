@@ -84,25 +84,6 @@ public class UserController {
         return "login-page";
     }
 
-    String companyName = "Cat Game Website";
-    @PostMapping("/login")
-    public String handleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Database database = new Database();
-        String email = request.getParameter("email");
-        String userPassword = request.getParameter("password");
-        String dbPassword = database.searchUser(email);
-        
-        if (dbPassword != null && database.validatePassword(userPassword, dbPassword)) {
-            logger.info("User found and password match.");
-            return "redirect:/twofacauth"; 
-        } else {
-            request.setAttribute("errorMessage", "Invalid Credentials.");
-            logger.warn("Invalid credentials");
-            return "login-page";
-        }
-    }
-        
-
 
     @RequestMapping("/twofacauth")
     public String auth(){

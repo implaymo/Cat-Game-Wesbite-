@@ -6,10 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -17,24 +20,44 @@ import org.springframework.stereotype.Service;
 @Service
 public class Database {
 
-    String url = "jdbc:sqlite:my.db";
-    private Connection conn;
+    Connection conn;
     private static final Logger logger = LogManager.getLogger(Database.class);
+    Properties properties = new Properties();
+    String dbUser;
+    String dbPass;
+    String dbUrl;
 
 
 
     public Database() {
-        conn = databaseConnection();
+        getDatabaseCredentials();
+        this.conn = databaseConnection();
+    }
+
+
+    public void getDatabaseCredentials() {
+        // Gets sensitive that from config.properties file
+        try (InputStream input = new FileInputStream("config.properties")) {
+            properties.load(input);
+            dbUser = properties.getProperty("username");
+            dbPass = properties.getProperty("password");
+            dbUrl = properties.getProperty("url");
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }    
     }
 
     public Connection databaseConnection(){
         try {
-            conn = DriverManager.getConnection(url);
+            conn = DriverManager.getConnection(dbUrl, dbUser, dbPass);
             if (conn != null) {
                 var meta = conn.getMetaData();
                 logger.info("The driver name is " + meta.getDriverName());
                 logger.info("Connection created with database.");
             } 
+            else{
+                logger.error("Connection to Database failed.");
+            }
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
@@ -93,14 +116,4 @@ public class Database {
         return null;
     }
 
-    public boolean validatePassword(String userPassword, String dbPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
-        if (encoder.matches(userPassword, dbPassword)) {
-            logger.info("PASSWORD MATCH");
-            return true;
-        } else {
-            logger.warn("WRONG PASSWORD");
-            return false;
-        }
-    }
 }
