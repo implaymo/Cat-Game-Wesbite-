@@ -1,4 +1,4 @@
-package com.catgame.CatGameWesbite;
+package com.catgame.CatGameWesbite.controllers;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.catgame.CatGameWesbite;
+package com.catgame.CatGameWesbite.controllers;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.catgame.CatGameWesbite.Database;
+
 import org.springframework.stereotype.Controller;
 
 
