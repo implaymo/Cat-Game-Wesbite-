@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - youtube.com/codingnepal -->
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,29 +16,28 @@
       <p th:text="${errorMessage}"></p>
     </div>
     
-    <form name="login" method="POST" th:action="@{/login}">
+    <form th:action="@{/login}" method="post" th:object="${loginUser}">
       <div class="field email">
-          <div class="input-area">
-              <input name="email" type="text" placeholder="Email Address" th:field="*{email}">
-              <i class="icon fas fa-envelope"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
-          </div>
-          <div class="error error-txt">Email can't be blank</div>
+        <div class="input-area">
+          <input type="text" name="username" placeholder="Enter your email" required>
+          <i class="icon fas fa-envelope"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error error-txt">Email can't be blank</div>
       </div>
       <div class="field password">
-          <div class="input-area">
-              <input name="password" type="password" placeholder="Password" th:field="*{password}">
-              <i class="icon fas fa-lock"></i>
-              <i class="error error-icon fas fa-exclamation-circle"></i>
-          </div>
-          <div class="error error-txt">Password can't be blank</div>
+        <div class="input-area">
+          <input type="password" th:field="*{password}" placeholder="Enter your password" required>
+          <i class="icon fas fa-lock"></i>
+          <i class="error error-icon fas fa-exclamation-circle"></i>
+        </div>
+        <div class="error error-txt">Password can't be blank</div>
       </div>
       <div class="pass-txt"><a href="#">Forgot password?</a></div>
       <input type="submit" value="Login">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-  </form>
-  <div class="sign-txt">Not yet a member? <a href="/registration">Register now</a></div>
-  
+    </form>
+    <div class="sign-txt">Not yet member? <a href="/registration">Register now</a></div>
+  </div>
 
   <script src="script.js"></script>
 

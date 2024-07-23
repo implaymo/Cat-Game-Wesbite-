@@ -36,5 +36,6 @@ build/
 ### Database ###
 my.db
 
-### environmental variables file ###
-config.properties
+### environmental variables files ###
+.env
+secret.properties

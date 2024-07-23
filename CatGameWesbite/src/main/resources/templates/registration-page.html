@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Registration or Sign Up form in HTML CSS | CodingLab </title> 
+    <title> Registration </title> 
     <link rel="stylesheet" type="text/css" href="/css/registration.css">
    </head>
 <body>
@@ -15,25 +15,25 @@
       <p th:text="${errorMessage}"></p>
     </div>
     
-    <form name="registration" action="/registration" method="POST">
+    <form th:action="@{/registration}" method="post" th:object="${registerDto}">
       <div class="input-box">
-        <input  name="name" type="text" placeholder="Enter your name" required>
+        <input type="text" th:field="*{name}" placeholder="Enter your name" required>
       </div>
       <div class="input-box">
-        <input name="email" type="text" placeholder="Enter your email" required>
+        <input type="email" th:field="*{email}" placeholder="Enter your email" required>
       </div>
       <div class="input-box">
-        <input name="password1" type="password" placeholder="Create password" required>
+        <input type="password" th:field="*{password}" placeholder="Enter your password" required>
       </div>
       <div class="input-box">
-        <input name="password2" type="password" placeholder="Confirm password" required>
+        <input type="password" th:field="*{confirmPassword}" placeholder="Confirm your password" required>
       </div>
       <div class="policy">
         <input type="checkbox" name="checkbox" value="check">
         <h3>I accept all terms & condition</h3>
       </div>
       <div class="input-box button">
-        <input type="Submit" value="Register Now">
+        <input type="submit" value="Register">
       </div>
       <div class="text">
         <h3>Already have an account? <a href="/login">Login now</a></h3>

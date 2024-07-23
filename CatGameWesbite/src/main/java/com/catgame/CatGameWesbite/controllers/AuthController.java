@@ -15,9 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class AuthController {
-    private static final Logger logger = LogManager.getLogger(AuthController.class);
-    TwoFactorAuth auth = new TwoFactorAuth();
-    
+    private static final Logger logger = LogManager.getLogger(AuthController.class);    
 
 
     @PostMapping("/authSuccess")

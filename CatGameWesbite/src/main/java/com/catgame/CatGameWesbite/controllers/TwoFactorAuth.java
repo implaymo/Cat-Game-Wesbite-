@@ -37,7 +37,7 @@ public class TwoFactorAuth {
 
     public static String getSecretKey() {
         String key = null;
-        try (InputStream input = new FileInputStream("config.properties")) {
+        try (InputStream input = new FileInputStream(".env")) {
             properties.load(input);
             key = properties.getProperty("SECRET_KEY");
             if (key != null) {

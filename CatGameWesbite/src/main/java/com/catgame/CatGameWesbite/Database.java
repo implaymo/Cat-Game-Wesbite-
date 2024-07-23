@@ -37,7 +37,7 @@ public class Database {
 
     public void getDatabaseCredentials() {
         // Gets sensitive that from config.properties file
-        try (InputStream input = new FileInputStream("config.properties")) {
+        try (InputStream input = new FileInputStream(".env")) {
             properties.load(input);
             dbUser = properties.getProperty("username");
             dbPass = properties.getProperty("password");
