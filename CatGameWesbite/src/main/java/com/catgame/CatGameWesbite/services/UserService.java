@@ -1,5 +1,7 @@
 package com.catgame.CatGameWesbite.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import com.catgame.CatGameWesbite.repository.UserRepository;
 
 @Service
 public class UserService {
+    private static final Logger logger = LogManager.getLogger(UserService.class);
+
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -21,6 +25,7 @@ public class UserService {
 
     public void registerUser(RegisterDto registerDto) {
         if (userRepository.findUserByEmail(registerDto.getEmail()) != null) {
+            logger.error("User already exists with email: " + registerDto.getEmail());
             throw new RuntimeException("User already exists with email: " + registerDto.getEmail());
         }
 
@@ -28,8 +33,8 @@ public class UserService {
         newUser.setName(registerDto.getName());
         newUser.setEmail(registerDto.getEmail());
         newUser.setPassword(passwordEncoder.encode(registerDto.getPassword())); 
-
         userRepository.save(newUser);
+        logger.info("New user created.");
     }
 }
 

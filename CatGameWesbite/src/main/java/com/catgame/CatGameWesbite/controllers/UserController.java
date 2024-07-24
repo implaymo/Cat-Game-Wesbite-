@@ -25,6 +25,7 @@ public class UserController {
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("registerDto", new RegisterDto()); 
+        logger.info("User able to enter registration page.");
         return "registration-page";
     }
 
@@ -51,6 +52,7 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("loginUser", new LoginUser()); 
+        logger.info("User able to enter login page.");
         return "login-page";
     }
 
