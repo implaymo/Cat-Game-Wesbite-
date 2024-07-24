@@ -60,4 +60,9 @@ public class UserController {
     public String auth() {
         return "twofa";
     }
+    
+    @GetMapping("/successlogin")
+    public String successlogin() {
+        return "success-login";
+    }
 }

@@ -21,7 +21,7 @@ public class WebSecurityConfig {
             .formLogin((form) -> form
                 .loginPage("/login") 
                 .permitAll()
-                .defaultSuccessUrl("/", true) 
+                .defaultSuccessUrl("/successlogin", true) 
             );
 			return http.build();
     }
