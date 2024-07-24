@@ -3,16 +3,24 @@ package com.catgame.CatGameWesbite.controllers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.catgame.CatGameWesbite.models.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.services.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -61,10 +69,25 @@ public class UserController {
         return "login-page";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        // Perform custom logic if needed
+        
+        // Invalidate the session and clear authentication
+        session.invalidate();
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
+        
+        // Redirect to the desired page after logout
+        return "redirect:/login?logout";
+    }
+
+
     @GetMapping("/twofacauth")
     public String auth() {
         return "twofa";
     }
+
     
     @GetMapping("/successlogin")
     public String successlogin() {
@@ -75,4 +98,14 @@ public class UserController {
     public String successRegistration() {
         return "success-registration";
     }
+
+
+    @GetMapping("/test")
+    public String test(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false); // Get the current session
+        if (session != null) {
+            model.addAttribute("sessionId", session.getId());
+        }
+        return "test";
+}
 }

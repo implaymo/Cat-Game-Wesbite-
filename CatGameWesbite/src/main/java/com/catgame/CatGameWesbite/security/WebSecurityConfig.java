@@ -25,11 +25,16 @@ public class WebSecurityConfig {
                 .failureUrl("/login?error=true")
             )
             .logout((logout) -> logout
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login?logout") 
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout") 
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll()
             );
-			return http.build();
+
+        return http.build();
     }
+
 
     @Bean 
     public PasswordEncoder passwordEncoder() { 
