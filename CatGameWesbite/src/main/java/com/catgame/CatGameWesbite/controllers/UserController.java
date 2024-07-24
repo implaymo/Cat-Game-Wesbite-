@@ -41,7 +41,7 @@ public class UserController {
         try {
             userService.registerUser(registerDto); 
             logger.info("Registration with success.");
-            return "success"; 
+            return "redirect:/successregistration"; 
         } catch (Exception e) {
             logger.error("Registration failed.");
             model.addAttribute("error", "Registration failed: " + e.getMessage());
@@ -64,5 +64,10 @@ public class UserController {
     @GetMapping("/successlogin")
     public String successlogin() {
         return "success-login";
+    }
+
+    @GetMapping("/successregistration")
+    public String successRegistration() {
+        return "success-registration";
     }
 }
