@@ -71,14 +71,11 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        // Perform custom logic if needed
-        
-        // Invalidate the session and clear authentication
+
         session.invalidate();
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         
-        // Redirect to the desired page after logout
         return "redirect:/login?logout";
     }
 
