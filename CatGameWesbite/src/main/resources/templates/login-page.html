@@ -12,7 +12,7 @@
   <div class="wrapper">
     <header>Login Form</header>
     
-    <div th:if="${error}" style="color: red;">
+    <div id="error-message" class="error-message" th:if="${error}" style="color: red;">
       <p th:text="${error}"></p>  
     </div>
 
@@ -39,7 +39,12 @@
     <div class="sign-txt">Not yet member? <a href="/registration">Register now</a></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="/javascript/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+ timerErrorMessage();
+});
+</script>
 
 </body>
 </html>

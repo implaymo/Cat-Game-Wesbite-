@@ -116,11 +116,13 @@ function liveScore() {
 
 
 function timerErrorMessage() {
-        var errorMessageDiv = document.getElementById('errorMessage');
+        var errorMessageDiv = document.getElementById('error-message');
         if (errorMessageDiv) {
             setTimeout(function() {
                 errorMessageDiv.style.display = 'none';
             }, 5000);
-        };
-        
+        } 
+        else {
+         console.log('Error message element not found.');
+        }
 }

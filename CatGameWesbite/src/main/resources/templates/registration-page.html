@@ -11,7 +11,7 @@
   <div class="wrapper">
     <h2>Registration Form</h2>
 
-    <div th:if="${error}" style="color: red;">
+    <div id="error-message" class="error-message" th:if="${error}" style="color: red;">
       <p th:text="${error}"></p>
   </div>
     
