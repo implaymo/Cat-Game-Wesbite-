@@ -12,10 +12,10 @@
   <div class="wrapper">
     <header>Login Form</header>
     
-    <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
-      <p th:text="${errorMessage}"></p>
+    <div th:if="${error}" style="color: red;">
+      <p th:text="${error}"></p>  
     </div>
-    
+
     <form th:action="@{/login}" method="post" th:object="${loginUser}">
       <div class="field email">
         <div class="input-area">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.catgame.CatGameWesbite.models.RegisterDto;
@@ -50,8 +51,12 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
         model.addAttribute("loginUser", new LoginUser()); 
+        if (error != null) {
+            model.addAttribute("error", "Invalid Credentials.");
+        }   
+
         logger.info("User able to enter login page.");
         return "login-page";
     }

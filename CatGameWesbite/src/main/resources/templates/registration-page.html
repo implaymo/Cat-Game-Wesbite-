@@ -11,9 +11,9 @@
   <div class="wrapper">
     <h2>Registration Form</h2>
 
-    <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
-      <p th:text="${errorMessage}"></p>
-    </div>
+    <div th:if="${error}" style="color: red;">
+      <p th:text="${error}"></p>
+  </div>
     
     <form th:action="@{/registration}" method="post" th:object="${registerDto}">
       <div class="input-box">
@@ -29,7 +29,7 @@
         <input type="password" th:field="*{confirmPassword}" placeholder="Confirm your password" required>
       </div>
       <div class="policy">
-        <input type="checkbox" name="checkbox" value="check">
+        <input type="checkbox" name="checkbox" value="check" required>
         <h3>I accept all terms & condition</h3>
       </div>
       <div class="input-box button">
