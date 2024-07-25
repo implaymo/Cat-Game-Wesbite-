@@ -78,10 +78,6 @@ public class UserController {
     }
 
 
-    @GetMapping("/twofacauth")
-    public String auth() {
-        return "twofa";
-    }
 
     
     @GetMapping("/successlogin")
@@ -92,11 +88,6 @@ public class UserController {
     @GetMapping("/successregistration")
     public String successRegistration() {
         return "success-registration";
-    }
-
-    @GetMapping("/settings")
-    public String settings() {
-        return "settings-page";
     }
 
 

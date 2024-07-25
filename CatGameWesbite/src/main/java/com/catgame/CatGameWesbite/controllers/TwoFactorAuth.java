@@ -62,7 +62,7 @@ public class TwoFactorAuth {
         while (true) {
             String code = getTOTPCode(secretKey);
             if (!code.equals(lastCode)) {
-                logger.info("Code created success.");
+                logger.info("Code created successfully.");
                 return code;
             }
             lastCode = code;
