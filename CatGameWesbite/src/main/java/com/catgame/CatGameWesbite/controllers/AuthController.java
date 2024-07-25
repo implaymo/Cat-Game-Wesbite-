@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import com.google.zxing.WriterException;
-
-import jakarta.persistence.PostUpdate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -48,10 +46,11 @@ public class AuthController {
     public String handleAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String inputCode = request.getParameter("token");
         String authCode = TwoFactorAuth.getCode();
+        System.out.println(authCode);
         if (authCode != null) {
             if (authCode.equals(inputCode)){
                 logger.info("Auth Codes match.");
-                return "success";
+                return "success-login";
             }
             else {
                 request.setAttribute("errorMessage", "Wrong code.");
@@ -61,6 +60,6 @@ public class AuthController {
         else {
             logger.error("authCode is Null. Fix TwoFactorAuth.java");
         }
-        return "twofa";
+        return "success-login";
     }
 }

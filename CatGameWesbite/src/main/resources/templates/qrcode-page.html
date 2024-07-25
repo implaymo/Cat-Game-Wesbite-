@@ -1,1 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+
 <img src="qr_code.png" alt="qrcode">
+
+<form th:action="@{/authsuccess}" method="post" th:object="${handleAuth}">
+  <div>
+      <label for="token">Please enter the code you were sent:</label>
+      <input type="text" name="token" id="token" />
+    </div>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <button type="submit">Check token</button>
+  </form>
+
+</html>
