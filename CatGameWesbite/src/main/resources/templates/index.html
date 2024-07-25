@@ -18,8 +18,15 @@
                         <li class="nav-item"><a href="" class="nav-link active" aria-current="page">Home</a></li>
                         <li th:if="${#authorization.expression('isAnonymous()')}" class="nav-item"><a href="/login" class="nav-link">Login</a></li>
                         <li th:if="${#authorization.expression('isAnonymous()')}" class="nav-item"><a href="/registration" class="nav-link">Sign-Up</a></li>
-                        <li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item"><a href="/logout"  class="nav-link">Logout</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">Settings</a></li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}" >
+                            <div class="dropdown">
+                            <button>Settings</button>
+                            <div class="dropdown-options">
+                                <a class="nav-item"><a href="/settings"  class="nav-link">Two Factor Authentication</a>
+                                <a class="nav-item"><a href="/logout"  class="nav-link">Logout</a>
+                            </div>
+                          </div>
+                        </li>
                     </ul>
                 </div>
             </div>

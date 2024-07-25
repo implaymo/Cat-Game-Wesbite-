@@ -37,4 +37,35 @@ h1 {
     text-align: center;
 }
 
+  .dropdown {
+    display: inline-block;
+    position: relative;
+  }
+  
+  button{
+    border:none;
+    background: none;
+    border-radius:2px;
+    padding:8px 10px;
+    font-size:16px;
+    cursor:pointer;
+  }
+  
+  button:hover{
+    background-color:#ddd;
+  }
+  
+  .dropdown-options {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    background-color:#fff;
+    border-radius:5px;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+  }
+  
+  .dropdown:hover .dropdown-options {
+    display: block;
+  }
+  
 
