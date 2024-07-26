@@ -9,6 +9,8 @@ import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.models.RegisterDto;
 import com.catgame.CatGameWesbite.repository.UserRepository;
 
+
+
 @Service
 public class UserService {
     private static final Logger logger = LogManager.getLogger(UserService.class);
@@ -36,5 +38,7 @@ public class UserService {
         userRepository.save(newUser);
         logger.info("New user created.");
     }
+
+
 }
 

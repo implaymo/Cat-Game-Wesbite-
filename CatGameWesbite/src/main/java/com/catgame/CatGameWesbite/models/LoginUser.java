@@ -19,6 +19,8 @@ public class LoginUser {
    private String password;
    private int highscore;
 
+   @Column(name = "two_factor_auth") 
+   private boolean twoFactorAuth;
 
 
     // Getters
@@ -42,6 +44,9 @@ public class LoginUser {
       return highscore;
   }
 
+  public boolean isTwoFactorAuth() {
+    return twoFactorAuth;
+  }
 
 
 
@@ -66,5 +71,8 @@ public class LoginUser {
       this.highscore = highscore;
   }
 
+  public void setTwoFactorAuth(boolean twoFactorAuth) {
+    this.twoFactorAuth = twoFactorAuth;
+  }
 
 }
