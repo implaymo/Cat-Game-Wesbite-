@@ -18,6 +18,8 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    boolean twoFactorAuthValue;
+
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -39,6 +41,14 @@ public class UserService {
         logger.info("New user created.");
     }
 
-
+    public boolean isTwoFactorAuthEnabled(String email) {
+        LoginUser user = userRepository.findUserByEmail(email);
+        if (user != null) {
+            return user.isTwoFactorEnabled();
+        } else {
+            logger.error("User not found with email: " + email);
+            return false; 
+        }
+    }
 }
 

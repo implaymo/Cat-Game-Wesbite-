@@ -32,6 +32,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         LoginUser user = userRepository.findUserByEmail(email);
         if (user != null) {
             logger.info("User authenticated with email: " + email);
+            if (user.isTwoFactorEnabled() != true){
+                System.out.println("THIS IS THE 2FA BOOELAN VALUE" + user.isTwoFactorEnabled());
+            }
             return User.withUsername(user.getEmail())
                 .password(user.getPassword())
                 .build();
@@ -39,6 +42,5 @@ public class CustomUserDetailsService implements UserDetailsService {
             logger.error("User not found with email " + email);
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
-        
     }
 }

@@ -38,7 +38,6 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute RegisterDto registerDto, Model model) {
-        // Perform registration logic, including validation and saving user
         if (!registerDto.getPassword().equals(registerDto.getConfirmPassword())) {
             logger.error("Passwords do not match.");
             model.addAttribute("error", "Passwords do not match.");
@@ -78,8 +77,6 @@ public class UserController {
     }
 
 
-
-    
     @GetMapping("/successlogin")
     public String successlogin() {
         return "success-login";

@@ -46,7 +46,6 @@ public class AuthController {
     public String handleAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String inputCode = request.getParameter("token");
         String authCode = TwoFactorAuth.getCode();
-        System.out.println(authCode);
         if (authCode != null) {
             if (authCode.equals(inputCode)){
                 logger.info("Auth Codes match.");
