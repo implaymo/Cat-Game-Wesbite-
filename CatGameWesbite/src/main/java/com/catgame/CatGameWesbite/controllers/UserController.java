@@ -72,7 +72,7 @@ public class UserController {
         session.invalidate();
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-        
+        logger.info("User logout successfully.");
         return "redirect:/login?logout";
     }
 
