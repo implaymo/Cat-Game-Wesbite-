@@ -29,6 +29,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         if (user != null && user.isTwoFactorEnabled()) {
             response.sendRedirect("/checkcode");
+        } else {
+            response.sendRedirect("/successlogin");
         }
     }
 }
