@@ -1,10 +1,17 @@
-<form action="/authSuccess" method="POST">
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<form th:action="@{/check2falogin}" method="post" th:object="${check2faLogin}">
     <div>
       <label for="token">Please enter the code you were sent:</label>
-      <div id="errorMessage" th:if="${errorMessage}" style="color: red;" >
-        <p th:text="${errorMessage}"></p>
+      <div id="error-message" class="error-message" th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>  
       </div>
       <input type="text" name="token" id="token" />
     </div>
     <button type="submit">Check token</button>
   </form>
+
+
+  </html>

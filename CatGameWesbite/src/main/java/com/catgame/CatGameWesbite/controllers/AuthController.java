@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.repository.UserRepository;
+import org.springframework.ui.Model;
+
 
 
 
@@ -28,8 +30,8 @@ public class AuthController {
  
 
 
-    @GetMapping("activate2fa")
-    public String activate2fa() {
+    @GetMapping("settings2fa")
+    public String settings2fa() {
         return "settings-page";
     }
 
@@ -51,8 +53,8 @@ public class AuthController {
         return "checkcode";
     }
 
-    @PostMapping("/authsuccess")
-    public String handleAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/twofactoractivation")
+    public String activateTwoFactorAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
@@ -76,4 +78,19 @@ public class AuthController {
         }
         return "qrcode-page";
     }
+
+    @PostMapping("check2falogin")
+    public String check2faLogin(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+        String inputCode = request.getParameter("token");
+        String authCode = TwoFactorAuth.getCode();
+        if (authCode.equals(inputCode)) {
+            return "success-login";
+        }
+        else {
+            model.addAttribute("error", "Invalid Code.");
+            return "checkcode";
+        }
+    }
+
+
 }

@@ -3,7 +3,7 @@
 
 <img src="qr_code.png" alt="qrcode">
 
-<form th:action="@{/authsuccess}" method="post" th:object="${handleAuth}">
+<form th:action="@{/twofactoractivation}" method="post" th:object="${activateTwoFactorAuth}">
   <div>
       <label for="token">Please enter the code you were sent:</label>
       <input type="text" name="token" id="token" />
