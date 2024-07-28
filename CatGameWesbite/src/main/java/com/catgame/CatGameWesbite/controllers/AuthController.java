@@ -53,8 +53,8 @@ public class AuthController {
         return "checkcode";
     }
 
-    @GetMapping("/twofactoractivation")
-    public String activateTwoFactorAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @PostMapping("/activate2fa")
+    public String activateTwoFactorAuth(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
@@ -69,7 +69,7 @@ public class AuthController {
                 return "success-2fa-activation";
             }
             else {
-                request.setAttribute("errorMessage", "Wrong code.");
+                model.addAttribute("error", "Invalid Code.");
                 logger.error("User provided a wrong code.");
             }
         }
@@ -90,6 +90,16 @@ public class AuthController {
             model.addAttribute("error", "Invalid Code.");
             return "checkcode";
         }
+    }
+
+    @GetMapping("deactivate2fa")
+    public String deactivateTwoFactorAuth(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        LoginUser user = userRepository.findUserByEmail(email);
+        user.setTwoFactorAuth(false);
+        userRepository.save(user);
+        return "redirect:/";
     }
 
 
