@@ -19,6 +19,8 @@ import com.catgame.CatGameWesbite.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import com.catgame.CatGameWesbite.repository.UserRepository;
+import org.springframework.security.core.Authentication;
 
 @Controller
 public class UserController {
@@ -28,6 +30,7 @@ public class UserController {
 
     @Autowired
     private UserService userService; 
+    private UserRepository userRepository;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -85,6 +88,26 @@ public class UserController {
     @GetMapping("/successregistration")
     public String successRegistration() {
         return "success-registration";
+    }
+
+    @GetMapping("/highscore")
+    public void getHighscore(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException { {
+
+    
+            String email = authentication.getName();
+            LoginUser user = userRepository.findUserByEmail(email);
+            int time = 0;
+            int score = 0;
+
+            int currentUserHighscore = user.getHighscore();
+    
+            if (time <= 1 && currentUserHighscore < score) {
+                user.setHighscore(score);
+                score = 0;
+            }
+            else if (time <= 1 && currentUserHighscore > score) {
+                score = 0;
+            }
     }
 
 
