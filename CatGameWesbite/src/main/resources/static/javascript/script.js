@@ -92,7 +92,10 @@ function countDown(){
             document.getElementById("timer").innerHTML = time;  
         }
         if (time === 0) {
-            stopTimer();
+            stopTimer()
+            console.log("WE GOT HERE");
+            updateHighscore();
+            resetGame();
         }
 } 
 
@@ -123,24 +126,21 @@ function timerErrorMessage() {
         else {
          console.log('Error message element not found.');
         }
-
-    // Send variables to Java Backend 
+    }    
+// Send variables to Java Backend 
+function updateHighscore() {
     $.ajax({
-        type : "POST",
-        url : "/highscore",
-        data : JSON.stringify({
-            'score': score,
-            "time" : time                
-        }),
-        dataType : 'json',
-        timeout : 100000,
-        contentType:'application/json',
-        success : function(data) {
-            response = data;
-            console.log("SUCCESS: ", data);
+        type: "POST",
+        url: "/highscore",
+        data: JSON.stringify({ score: score, time: time }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(response) {
+            console.log("Success:", response);
         },
-        error : function(e) {
-            console.log("ERROR: ", e);
-        },
+        error: function(error) {
+            console.error("Error:", error);
+        }
     });
 }
+
