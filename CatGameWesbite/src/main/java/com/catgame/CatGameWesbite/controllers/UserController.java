@@ -95,20 +95,6 @@ public class UserController {
         return "success-registration";
     }
 
-    @RequestMapping(value = "/highscore")
-    public String checkHighscore(@RequestBody String data, Authentication authentication){   
-        System.out.println("I GOT HERE");
-    
-            String email = authentication.getName();
-            LoginUser user = userRepository.findUserByEmail(email);
-            int time = 0;
-            int score = 0;
-
-            JSONObject jsonObj = new JSONObject(data); //transform the string in JSON to use it.
-            System.out.println(jsonObj); 
-    
-            return "redirect:/";
-        }
 
 
 
