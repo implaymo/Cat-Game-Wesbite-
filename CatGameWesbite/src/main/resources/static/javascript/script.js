@@ -4,7 +4,7 @@ let leftLimit = 0;
 let topLimit = 0;
 let rightLimit = window.innerWidth;
 let bottomLimit = window.innerHeight;
-let timesClick = 1;
+let score = 1;
 let catPress = false;
 
 const myTimer = setInterval(countDown, 1000);
@@ -12,18 +12,16 @@ const myTimer = setInterval(countDown, 1000);
 
 function countClicks(){
     liveScore();
-
     if (time > 0){
-        timesClick ++;
-        console.log("TIMES CLICKED: " + timesClick);
+        score ++;
+        console.log("TIMES CLICKED: " + score);
     }
 }
 
-function highscore() {
-// NOT BEING USED AT THE MOMENT. Needs new implementation. GOAL is to create an explosion of small cats in random directions if user gets a new highscore
-
+function ifGetHighscore() {
+// NOT BEING USED AT THE MOMENT. Needs new implementation. GOAL is to create an explosion of small cats in random directions if user gets a new ifHighscore
     catPress = true;
-    timesClick++;
+    score++;
     let randomNumber = Math.floor(Math.random() * 4);
     let newCat = createNewCat()
     let catPosX = window.innerWidth / 2;
@@ -61,7 +59,7 @@ function highscore() {
             }
         }
     }
-    console.log("TIMES CLICKED: " + timesClick)
+    console.log("TIMES CLICKED: " + score)
 }
 
 catId = 0;
@@ -88,7 +86,7 @@ function removeNewCat(newCatId) {
 
 let time = 30;
 function countDown(){
-        if (timesClick >= 2){
+        if (score >= 2){
             time--;
             console.log("TIMER: " + time);
             document.getElementById("timer").innerHTML = time;  
@@ -104,14 +102,14 @@ function stopTimer() {
 
 function resetGame() {
     time = 30;
-    timesClick = 0;
+    score = 0;
     document.getElementById("timer").innerText = 30;
     document.getElementById("live-score").innerText = "Score: 0"
     countDown();
 }
 
 function liveScore() {
-    document.getElementById("live-score").innerText = "Score: " + timesClick;
+    document.getElementById("live-score").innerText = "Score: " + score;
 }
 
 
@@ -125,4 +123,24 @@ function timerErrorMessage() {
         else {
          console.log('Error message element not found.');
         }
+
+    // Send variables to Java Backend 
+    $.ajax({
+        type : "POST",
+        url : "/highscore",
+        data : JSON.stringify({
+            'score': score,
+            "time" : time                
+        }),
+        dataType : 'json',
+        timeout : 100000,
+        contentType:'application/json',
+        success : function(data) {
+            response = data;
+            console.log("SUCCESS: ", data);
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        },
+    });
 }

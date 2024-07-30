@@ -1,5 +1,7 @@
 package com.catgame.CatGameWesbite.controllers;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +11,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import com.catgame.CatGameWesbite.models.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.services.UserService;
-
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.catgame.CatGameWesbite.repository.UserRepository;
 import org.springframework.security.core.Authentication;
+import org.json.JSONObject;
+
 
 @Controller
 public class UserController {
@@ -90,25 +95,21 @@ public class UserController {
         return "success-registration";
     }
 
-    @GetMapping("/highscore")
-    public void getHighscore(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException { {
-
+    @RequestMapping(value = "/highscore")
+    public String checkHighscore(@RequestBody String data, Authentication authentication){   
+        System.out.println("I GOT HERE");
     
             String email = authentication.getName();
             LoginUser user = userRepository.findUserByEmail(email);
             int time = 0;
             int score = 0;
 
-            int currentUserHighscore = user.getHighscore();
+            JSONObject jsonObj = new JSONObject(data); //transform the string in JSON to use it.
+            System.out.println(jsonObj); 
     
-            if (time <= 1 && currentUserHighscore < score) {
-                user.setHighscore(score);
-                score = 0;
-            }
-            else if (time <= 1 && currentUserHighscore > score) {
-                score = 0;
-            }
-    }
+            return "redirect:/";
+        }
+
 
 
     @GetMapping("/test")
