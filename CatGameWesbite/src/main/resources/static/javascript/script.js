@@ -62,19 +62,21 @@ function timerErrorMessage() {
 
 function checkHighscore() {
     if (score > highscore) {
-        console.log("New Highscore achieved.")
+        console.log("New Highscore achieved: " + score);
+        highscoreToBackend(score);
         highscore = score;
         document.getElementById("highscore").innerText = "Highscore: " + highscore;
     }
 }
 
 
+
 // Send variables to Java Backend 
-function highscoreToBackend() {
+function highscoreToBackend(score) {
     $.ajax({
         type: "POST",
-        url: "/highscore",
-        data: JSON.stringify({ score: score, time: time }),
+        url: "/updatehighscore",
+        data: JSON.stringify({score: score}),
         contentType: 'application/json',
         dataType: 'json',
         success: function(response) {

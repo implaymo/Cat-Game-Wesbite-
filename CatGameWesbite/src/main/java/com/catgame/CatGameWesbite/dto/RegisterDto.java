@@ -1,4 +1,4 @@
-package com.catgame.CatGameWesbite.models;
+package com.catgame.CatGameWesbite.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

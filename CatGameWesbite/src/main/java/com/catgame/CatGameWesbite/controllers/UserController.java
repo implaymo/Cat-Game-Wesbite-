@@ -1,10 +1,11 @@
 package com.catgame.CatGameWesbite.controllers;
 
-import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -12,19 +13,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import com.catgame.CatGameWesbite.models.RegisterDto;
+import com.catgame.CatGameWesbite.dto.HighscoreDto;
+import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.services.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.catgame.CatGameWesbite.repository.UserRepository;
 import org.springframework.security.core.Authentication;
-import org.json.JSONObject;
 
 
 @Controller
@@ -35,6 +34,8 @@ public class UserController {
 
     @Autowired
     private UserService userService; 
+
+    @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/registration")
@@ -96,7 +97,28 @@ public class UserController {
     }
 
 
+    @PostMapping("/updatehighscore")
+    public ResponseEntity<String> getHighscore(@RequestBody HighscoreDto highscoreDto, Authentication authentication) {        
+        String email = authentication.getName();
+        LoginUser user = userRepository.findUserByEmail(email);
 
+        if (user != null) {
+            Integer userHighscore = user.getHighscore();
+            Integer lastGameHighscore = highscoreDto.getHighscore();
+
+            if (userHighscore < lastGameHighscore) {
+                user.setHighscore(lastGameHighscore);
+                userRepository.save(user);
+                logger.info("Highscore updated successfully.");
+
+            } 
+            return ResponseEntity.ok("Highscore updated.");
+        }
+        else {
+            logger.error("User not found.");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+         }
+    }
 
     @GetMapping("/test")
     public String test(HttpServletRequest request, Model model) {

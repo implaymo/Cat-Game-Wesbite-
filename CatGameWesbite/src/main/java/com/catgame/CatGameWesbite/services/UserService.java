@@ -5,8 +5,9 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
-import com.catgame.CatGameWesbite.models.RegisterDto;
 import com.catgame.CatGameWesbite.repository.UserRepository;
 
 
