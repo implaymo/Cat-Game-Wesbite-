@@ -2,13 +2,10 @@ package com.catgame.CatGameWesbite.dto;
 
 public class HighscoreDto {
 
-    private int score;
+    private int highscore;
 
-    public Integer getScore(){
-        return score;
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
     }
-    
-    public void setScore(Integer score) {
-        this.score = score;
-    }
+
 }

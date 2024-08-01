@@ -1,6 +1,7 @@
 package com.catgame.CatGameWesbite.controllers;
 
 
+import org.apache.catalina.connector.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import com.catgame.CatGameWesbite.dto.HighscoreDto;
+import com.catgame.CatGameWesbite.dto.ScoreDto;
 import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.services.UserService;
@@ -98,13 +99,13 @@ public class UserController {
 
 
     @PostMapping("/updatehighscore")
-    public ResponseEntity<String> getHighscore(@RequestBody HighscoreDto highscoreDto, Authentication authentication) {        
+    public ResponseEntity<String> getHighscore(@RequestBody ScoreDto highscoreDto, Authentication authentication) {        
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
 
         if (user != null) {
             Integer userHighscore = user.getHighscore();
-            Integer lastGameScore = highscoreDto.getScore();
+            Integer lastGameScore = highscoreDto.getGameScore();
 
             if (userHighscore < lastGameScore) {
                 user.setHighscore(lastGameScore);
@@ -121,6 +122,24 @@ public class UserController {
          }
     }
 
+    @GetMapping("/getuserhighscore")
+    public ResponseEntity<ScoreDto> setHighscore(ScoreDto highscoreDto, Authentication authentication) {
+        String email = authentication.getName();
+        LoginUser user = userRepository.findUserByEmail(email);
+
+        if (user != null) {
+            Integer userHighscore = user.getHighscore();
+            System.out.println("USER HIGHSCORE: " + userHighscore);
+//            highscoreDto.setGameHighscore(userHighscore);
+            return ResponseEntity.ok(highscoreDto);
+        } 
+        else {
+            logger.error("User not found.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+
+
     @GetMapping("/test")
     public String test(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false); // Get the current session
@@ -128,5 +147,5 @@ public class UserController {
             model.addAttribute("sessionId", session.getId());
         }
         return "test";
-}
+    }
 }

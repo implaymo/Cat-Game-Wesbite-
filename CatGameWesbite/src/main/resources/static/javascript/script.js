@@ -69,9 +69,23 @@ function checkHighscore() {
     }
 }
 
+// Get highscore from User(server side)
+function fetchHighscore() {
+    $.ajax({
+        type: "GET",
+        url: "/getuserhighscore",
+        success: function(response) {
+            console.log("Highscore: ", response);
+            document.getElementById("highscore").innerText = "Highscore: " + response.highscore;
+        },
+        error: function(error) {
+            console.error("Error fetching highscore.", error);
+        }
+    });
+}
 
 
-// Send variables to Java Backend 
+// Send user score to client side
 function highscoreToBackend(score) {
     $.ajax({
         type: "POST",
