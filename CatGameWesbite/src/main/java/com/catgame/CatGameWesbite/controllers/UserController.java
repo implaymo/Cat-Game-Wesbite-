@@ -105,9 +105,6 @@ public class UserController {
         if (user != null) {
             Integer userHighscore = user.getHighscore();
             Integer lastGameHighscore = highscoreDto.getScore();
-            System.out.println("USER HIGHSCORE: " + userHighscore);
-            System.out.println("LAST GAME HIGHSCORE: " + lastGameHighscore);
-
 
             if (userHighscore < lastGameHighscore) {
                 user.setHighscore(lastGameHighscore);
