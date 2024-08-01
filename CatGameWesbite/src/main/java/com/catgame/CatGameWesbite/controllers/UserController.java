@@ -104,10 +104,10 @@ public class UserController {
 
         if (user != null) {
             Integer userHighscore = user.getHighscore();
-            Integer lastGameHighscore = highscoreDto.getScore();
+            Integer lastGameScore = highscoreDto.getScore();
 
-            if (userHighscore < lastGameHighscore) {
-                user.setHighscore(lastGameHighscore);
+            if (userHighscore < lastGameScore) {
+                user.setHighscore(lastGameScore);
                 userRepository.save(user);
                 logger.info("Highscore updated successfully.");
                 return ResponseEntity.ok("Highscore updated.");
