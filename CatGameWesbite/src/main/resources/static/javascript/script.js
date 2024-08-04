@@ -6,8 +6,9 @@ let rightLimit = window.innerWidth;
 let bottomLimit = window.innerHeight;
 let score = 0;
 let catPress = false;
-let highscore = 0
 let time = 30;
+fetchHighscore();
+highscore = 0;
 
 
 const myTimer = setInterval(countDown, 1000);
@@ -61,11 +62,12 @@ function timerErrorMessage() {
 
 
 function checkHighscore() {
+    console.log("SCORE " + score);
+    console.log("HIGHSCORE: " + highscore);
     if (score > highscore) {
         console.log("New Highscore achieved: " + score);
         highscoreToBackend(score);
-        highscore = score;
-        document.getElementById("highscore").innerText = "Highscore: " + highscore;
+        fetchHighscore();
     }
 }
 
@@ -76,6 +78,7 @@ function fetchHighscore() {
         url: "/getuserhighscore",
         success: function(response) {
             console.log("Highscore: ", response);
+            highscore = response;
             document.getElementById("highscore").innerText = "Highscore: " + response.highscore;
         },
         error: function(error) {

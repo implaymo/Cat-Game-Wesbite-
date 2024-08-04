@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.catgame.CatGameWesbite.dto.ScoreDto;
+import com.catgame.CatGameWesbite.dto.HighscoreDto;
 import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.services.UserService;
@@ -99,13 +100,15 @@ public class UserController {
 
 
     @PostMapping("/updatehighscore")
-    public ResponseEntity<String> getHighscore(@RequestBody ScoreDto highscoreDto, Authentication authentication) {        
+    public ResponseEntity<String> getHighscore(@RequestBody ScoreDto scoreDto, Authentication authentication) {        
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
 
         if (user != null) {
             Integer userHighscore = user.getHighscore();
-            Integer lastGameScore = highscoreDto.getGameScore();
+            Integer lastGameScore = scoreDto.getGameScore();
+            System.out.println("USER HIGHSCORE " + userHighscore);
+            System.out.println("LAST GAME SCORE: " + lastGameScore);
 
             if (userHighscore < lastGameScore) {
                 user.setHighscore(lastGameScore);
@@ -123,14 +126,13 @@ public class UserController {
     }
 
     @GetMapping("/getuserhighscore")
-    public ResponseEntity<ScoreDto> setHighscore(ScoreDto highscoreDto, Authentication authentication) {
+    public ResponseEntity<HighscoreDto> setHighscore(Authentication authentication) {
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
 
         if (user != null) {
-            Integer userHighscore = user.getHighscore();
-            System.out.println("USER HIGHSCORE: " + userHighscore);
-//            highscoreDto.setGameHighscore(userHighscore);
+            int userHighscore = user.getHighscore();
+            HighscoreDto highscoreDto = new HighscoreDto(userHighscore);
             return ResponseEntity.ok(highscoreDto);
         } 
         else {
