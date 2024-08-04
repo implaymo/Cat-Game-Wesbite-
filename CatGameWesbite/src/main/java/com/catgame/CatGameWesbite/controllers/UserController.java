@@ -100,7 +100,7 @@ public class UserController {
 
 
     @PostMapping("/updatehighscore")
-    public ResponseEntity<String> getHighscore(@RequestBody ScoreDto scoreDto, Authentication authentication) {        
+    public ResponseEntity<String> updateHighscore(@RequestBody ScoreDto scoreDto, Authentication authentication) {        
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
 

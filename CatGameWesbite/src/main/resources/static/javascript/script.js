@@ -8,7 +8,6 @@ let score = 0;
 let catPress = false;
 let time = 30;
 fetchHighscore();
-highscore = 0;
 
 
 const myTimer = setInterval(countDown, 1000);
@@ -18,29 +17,6 @@ function countClicks(){
     score ++;
     liveScore();
     console.log("TIMES CLICKED: " + score);
-}
-
-function countDown(){
-        if (score >= 1){
-            time--;
-            console.log("TIMER: " + time);
-            document.getElementById("timer").innerHTML = time;  
-        }
-        if (time < 1) {
-            resetGame();
-        }
-} 
-
-function stopTimer() {
-    clearInterval(myTimer);
-}
-
-function resetGame() {
-    checkHighscore();
-    time = 30;
-    score = 0;
-    document.getElementById("timer").innerText = 30;
-    document.getElementById("live-score").innerText = "Score: 0";
 }
 
 function liveScore() {
@@ -60,10 +36,32 @@ function timerErrorMessage() {
         }
     }    
 
+    function stopTimer() {
+        clearInterval(myTimer);
+    }
+    
+
+
+function countDown(){
+        if (score >= 1){
+            time--;
+            console.log("TIMER: " + time);
+            document.getElementById("timer").innerHTML = time;  
+        }
+        if (time < 1) {
+            resetGame();
+        }
+} 
+
+function resetGame() {
+    checkHighscore();
+    time = 30;
+    score = 0;
+    document.getElementById("timer").innerText = 30;
+    document.getElementById("live-score").innerText = "Score: 0";
+}
 
 function checkHighscore() {
-    console.log("SCORE " + score);
-    console.log("HIGHSCORE: " + highscore);
     if (score > highscore) {
         console.log("New Highscore achieved: " + score);
         highscoreToBackend(score);
@@ -77,8 +75,8 @@ function fetchHighscore() {
         type: "GET",
         url: "/getuserhighscore",
         success: function(response) {
-            console.log("Highscore: ", response);
-            highscore = response;
+            console.log("USER Highscore: ", response);
+            highscore = response.highscore;
             document.getElementById("highscore").innerText = "Highscore: " + response.highscore;
         },
         error: function(error) {
