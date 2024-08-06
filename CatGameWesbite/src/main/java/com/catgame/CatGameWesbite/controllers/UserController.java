@@ -140,6 +140,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/forgetpassword")
+    public String forgetPassword() {
+        return "forget-password";
+    }
+
 
     @GetMapping("/test")
     public String test(HttpServletRequest request, Model model) {
