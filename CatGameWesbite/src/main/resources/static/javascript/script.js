@@ -54,28 +54,28 @@ function countDown(){
 } 
 
 function resetGame() {
-    checkHighscore();
+    checkIfHighscore();
     time = 30;
     score = 0;
     document.getElementById("timer").innerText = 30;
     document.getElementById("live-score").innerText = "Score: 0";
 }
 
-function checkHighscore() {
+function checkIfHighscore() {
     if (score > highscore) {
         console.log("New Highscore achieved: " + score);
-        highscoreToBackend(score);
-        fetchHighscore();
+        document.getElementById("highscore").innerText = "Highscore: " + score;
+        sendNewHighscore(score);
     }
 }
 
-// Get highscore from User(server side)
+// Get highscore from users Database table
 function fetchHighscore() {
     $.ajax({
         type: "GET",
         url: "/getuserhighscore",
         success: function(response) {
-            console.log("USER Highscore: ", response);
+            console.log("Got user highscore from database. Highscore: ", response.highscore);
             highscore = response.highscore;
             document.getElementById("highscore").innerText = "Highscore: " + response.highscore;
         },
@@ -86,8 +86,8 @@ function fetchHighscore() {
 }
 
 
-// Send user score to client side
-function highscoreToBackend(score) {
+// Send user score to server side
+function sendNewHighscore(score) {
     $.ajax({
         type: "POST",
         url: "/updatehighscore",
@@ -95,9 +95,10 @@ function highscoreToBackend(score) {
         contentType: 'application/json',
         dataType: 'json',
         success: function(response) {
-            console.log("Success:", response);
+            console.log("Success:", response.highscore);
         },
         error: function(error) {
+            console.log("UPDATING HIGHSCORE TO DATABASE, BUT IM GETTING AN ERROR.")
             console.error("Error:", error);
         }
     });
