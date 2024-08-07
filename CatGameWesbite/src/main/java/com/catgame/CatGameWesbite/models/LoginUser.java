@@ -22,6 +22,9 @@ public class LoginUser {
    @Column(name = "two_factor_enabled") 
    private boolean twoFactorEnabled;
 
+   @Column(name = "reset_password_token")
+   private String resetPasswordToken;
+
 
     // Getters
     public int getId() {
@@ -46,6 +49,10 @@ public class LoginUser {
 
   public boolean isTwoFactorEnabled() {
     return twoFactorEnabled;
+  }
+
+  public String getResetPasswordToken () {
+    return resetPasswordToken;
   }
 
 
@@ -73,6 +80,10 @@ public class LoginUser {
 
   public void setTwoFactorAuth(boolean twoFactorEnabled) {
     this.twoFactorEnabled = twoFactorEnabled;
+  }
+
+  public void setResetPasswordToken(String resetPasswordToken) {
+    this.resetPasswordToken = resetPasswordToken;
   }
 
 }
