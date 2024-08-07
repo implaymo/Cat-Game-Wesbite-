@@ -6,4 +6,6 @@ import com.catgame.CatGameWesbite.models.LoginUser;
 
 public interface UserRepository extends JpaRepository<LoginUser, String> { 
    public LoginUser findUserByEmail(String email); 
+
+   public LoginUser findByResetPasswordToken(String token);
 }
