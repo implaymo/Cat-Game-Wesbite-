@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.catgame.CatGameWesbite.repository.UserRepository;
 import org.springframework.security.core.Authentication;
+import net.bytebuddy.utility.RandomString;
 
 
 @Controller
@@ -140,9 +141,16 @@ public class UserController {
         }
     }
 
-    @GetMapping("/forgetpassword")
-    public String forgetPassword() {
-        return "forget-password";
+    @GetMapping("/forgot_password")
+    public String forgotPassword() {
+        return "forgot-password";
+    }
+
+    @PostMapping("/forgot_password")
+    public String forgotPassword(HttpServletRequest request, Model model) {
+        String email = request.getParameter("email");
+        String token = RandomString.make(30);
+        System.out.println("TOKEN " + token);
     }
 
 

@@ -39,3 +39,8 @@ my.db
 ### environmental variables files ###
 .env
 secret.properties
+
+
+### yml file
+
+application.yml

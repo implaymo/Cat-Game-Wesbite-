@@ -73,6 +73,12 @@
         <artifactId>spring-boot-starter-security</artifactId>
         <version>3.3.2</version>
     </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+        <version>3.3.2</version>
+    </dependency>
+
 
 
 
@@ -96,6 +102,11 @@
         <groupId>org.mindrot</groupId>
         <artifactId>jbcrypt</artifactId>
         <version>0.3m</version>
+    </dependency>
+    <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>1.14.18</version>
     </dependency>
 
     <!-- Testing Dependencies -->

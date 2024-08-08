@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.catgame.CatGameWesbite.models.LoginUser;
@@ -21,10 +22,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -39,5 +43,26 @@ public class CustomUserDetailsService implements UserDetailsService {
             logger.error("User not found with email " + email);
             throw new UsernameNotFoundException("User not found with email: " + email);
         }
+    }
+
+    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
+        LoginUser user = userRepository.findUserByEmail(email);
+        if (user != null) {
+            logger.info("Token created " + token);
+            user.setResetPasswordToken(token);
+            userRepository.save(user);
+        } else {
+            throw new UsernameNotFoundException("Could not find any customer with the email " + email);
+        }
+    }
+
+    public LoginUser getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token);
+    }
+
+    public void updatePassword(LoginUser user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
     }
 }
