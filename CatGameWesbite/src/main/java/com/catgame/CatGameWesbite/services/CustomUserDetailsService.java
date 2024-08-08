@@ -1,8 +1,12 @@
 package com.catgame.CatGameWesbite.services;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +19,9 @@ import org.springframework.security.core.userdetails.User;
 
 import com.catgame.CatGameWesbite.repository.UserRepository;
 
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -23,12 +30,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private JavaMailSender mailSender;
+
 
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder, JavaMailSender mailSender) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.mailSender = mailSender;
     }
 
     @Override
@@ -65,4 +75,30 @@ public class CustomUserDetailsService implements UserDetailsService {
         user.setResetPasswordToken(null);
         userRepository.save(user);
     }
+
+    public void sendEmail(String recipientEmail, String link)
+        throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();              
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        
+        helper.setFrom("contact@shopme.com", "Shopme Support");
+        helper.setTo(recipientEmail);
+        
+        String subject = "Here's the link to reset your password";
+        
+        String content = "<p>Hello,</p>"
+                + "<p>You have requested to reset your password.</p>"
+                + "<p>Click the link below to change your password:</p>"
+                + "<p><a href=\"" + link + "\">Change my password</a></p>"
+                + "<br>"
+                + "<p>Ignore this email if you do remember your password, "
+                + "or you have not made the request.</p>";
+        
+        helper.setSubject(subject);
+        
+        helper.setText(content, true);
+        
+        mailSender.send(message);
+        }
+
 }

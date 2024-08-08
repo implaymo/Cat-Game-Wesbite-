@@ -1,12 +1,15 @@
 package com.catgame.CatGameWesbite.controllers;
 
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +22,19 @@ import com.catgame.CatGameWesbite.dto.ScoreDto;
 import com.catgame.CatGameWesbite.dto.HighscoreDto;
 import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
+import com.catgame.CatGameWesbite.services.CustomUserDetailsService;
 import com.catgame.CatGameWesbite.services.UserService;
+import com.catgame.CatGameWesbite.services.Utility;
+
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.catgame.CatGameWesbite.repository.UserRepository;
+
 import org.springframework.security.core.Authentication;
 import net.bytebuddy.utility.RandomString;
+
 
 
 @Controller
@@ -39,6 +48,10 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -150,8 +163,22 @@ public class UserController {
     public String forgotPassword(HttpServletRequest request, Model model) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
-        System.out.println("TOKEN " + token);
+        try {
+        customUserDetailsService.updateResetPasswordToken(token, email);
+        String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
+        customUserDetailsService.sendEmail(email, resetPasswordLink);
+        model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+         
+    } catch (UsernameNotFoundException ex) {
+        logger.error("WTF IS GOING ON 1");
+        model.addAttribute("error", ex.getMessage());
+    } catch (UnsupportedEncodingException | MessagingException e) {
+        logger.error("WTF IS GOING ON 1");
+        model.addAttribute("error", "Error while sending email");
     }
+         
+    return "forgot_password";
+}
 
 
     @GetMapping("/test")
