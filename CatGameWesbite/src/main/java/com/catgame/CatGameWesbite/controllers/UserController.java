@@ -167,13 +167,13 @@ public class UserController {
         String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
         customUserDetailsService.sendEmail(email, resetPasswordLink);
         model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
-        return "forgot_password";
+        return "forgot-password";
     } catch (UsernameNotFoundException ex) {
         model.addAttribute("error", ex.getMessage());
     } catch (UnsupportedEncodingException | MessagingException e) {
         model.addAttribute("error", "Error while sending email");
     }
-    return "forgot_password";
+    return "forgot-password";
 }
 
     @GetMapping("/reset_password")
