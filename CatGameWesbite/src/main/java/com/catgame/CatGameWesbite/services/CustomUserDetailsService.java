@@ -58,7 +58,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
         LoginUser user = userRepository.findUserByEmail(email);
         if (user != null) {
-            logger.info("Token created " + token);
+            logger.info("Token created ");
             user.setResetPasswordToken(token);
             userRepository.save(user);
         } else {
@@ -78,6 +78,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public void sendEmail(String recipientEmail, String link)
         throws MessagingException, UnsupportedEncodingException {
+        System.out.println("LINK " + link);
         MimeMessage message = mailSender.createMimeMessage();              
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
@@ -99,7 +100,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         helper.setText(content, true);
         
         mailSender.send(message);
-        System.out.println("SUCCESSFULLY SENT THE EMAIL I GUESS");
-        }
+        logger.info("Successfully sent email to user.");
+    }
 
 }
