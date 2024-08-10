@@ -92,7 +92,6 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
         session.invalidate();
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication());
@@ -155,12 +154,12 @@ public class UserController {
     }
 
     @GetMapping("/forgot_password")
-    public String forgotPassword() {
+    public String showForgotPasswordForm() {
         return "forgot-password";
     }
 
     @PostMapping("/forgot_password")
-    public String forgotPassword(HttpServletRequest request, Model model) {
+    public String processForgotPassword(HttpServletRequest request, Model model) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
         try {
@@ -168,18 +167,23 @@ public class UserController {
         String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
         customUserDetailsService.sendEmail(email, resetPasswordLink);
         model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
-         
     } catch (UsernameNotFoundException ex) {
-        logger.error("WTF IS GOING ON 1");
         model.addAttribute("error", ex.getMessage());
     } catch (UnsupportedEncodingException | MessagingException e) {
-        logger.error("WTF IS GOING ON 1");
         model.addAttribute("error", "Error while sending email");
     }
-         
     return "forgot_password";
 }
 
+    @GetMapping("/reset_password")
+    public String showResetPasswordForm() {
+        return "forgot_password";
+    }
+    
+    @PostMapping("/reset_password")
+    public String processResetPassword() {
+        return "forgot_password";
+    }
 
     @GetMapping("/test")
     public String test(HttpServletRequest request, Model model) {

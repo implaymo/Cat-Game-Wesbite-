@@ -81,7 +81,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         MimeMessage message = mailSender.createMimeMessage();              
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
-        helper.setFrom("contact@shopme.com", "Shopme Support");
+        helper.setFrom("goncalomoreirasilva@gmail.com", "Cat Game Website");
         helper.setTo(recipientEmail);
         
         String subject = "Here's the link to reset your password";
@@ -99,6 +99,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         helper.setText(content, true);
         
         mailSender.send(message);
+        System.out.println("SUCCESSFULLY SENT THE EMAIL I GUESS");
         }
 
 }
