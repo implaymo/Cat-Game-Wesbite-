@@ -192,7 +192,9 @@ public class UserController {
     }
     
     @PostMapping("/reset_password")
-    public String processResetPassword() {
+    public String processResetPassword(HttpServletRequest request, Model model) {
+        String token = request.getParameter("password");
+        String password = request.getParameter("password");
         return "reset-password";
     }
 
