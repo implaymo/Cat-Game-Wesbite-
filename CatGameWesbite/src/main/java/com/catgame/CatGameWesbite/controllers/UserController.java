@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -177,13 +178,22 @@ public class UserController {
 }
 
     @GetMapping("/reset_password")
-    public String showResetPasswordForm() {
-        return "forgot_password";
+    public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
+        LoginUser user = userRepository.findByResetPasswordToken(token);
+        model.addAttribute("token", token);
+
+        if (user == null) {
+            logger.error("User not found. Invalid Token.");
+            model.addAttribute("message", "Invalid Token");
+            return "message";
+        }
+        logger.info("User found and token correct.");
+        return "reset-password";
     }
     
     @PostMapping("/reset_password")
     public String processResetPassword() {
-        return "forgot_password";
+        return "reset-password";
     }
 
     @GetMapping("/test")
