@@ -136,6 +136,12 @@
         <artifactId>json</artifactId>
         <version>20240303</version>
     </dependency>
+    <!-- Javax Json -->
+    <dependency>
+    <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>1.1.4</version>
+    </dependency>   
 
 </dependencies>
 
