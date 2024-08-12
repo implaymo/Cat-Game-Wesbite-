@@ -78,7 +78,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public void sendEmail(String recipientEmail, String link)
         throws MessagingException, UnsupportedEncodingException {
-        System.out.println("LINK " + link);
         MimeMessage message = mailSender.createMimeMessage();              
         MimeMessageHelper helper = new MimeMessageHelper(message);
         

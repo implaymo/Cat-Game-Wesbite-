@@ -193,8 +193,21 @@ public class UserController {
     
     @PostMapping("/reset_password")
     public String processResetPassword(HttpServletRequest request, Model model) {
-        String token = request.getParameter("password");
+        String token = request.getParameter("token");
         String password = request.getParameter("password");
+
+        LoginUser user = customUserDetailsService.getByResetPasswordToken(token);
+        model.addAttribute("title", "Reset your password.");
+
+        if (user.equals(null)) {
+            logger.error("User not found.");
+            model.addAttribute("message", "User not found");
+        }
+        else {
+            customUserDetailsService.updatePassword(user, password);
+            logger.info("Password updated successfully.");
+            model.addAttribute("message", "You have successfully changed your password.");
+        }
         return "reset-password";
     }
 
