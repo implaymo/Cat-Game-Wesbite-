@@ -13,6 +13,7 @@ import com.catgame.CatGameWesbite.repository.UserRepository;
 
 
 
+
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
@@ -26,8 +27,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         String email = authentication.getName();
         LoginUser user = userRepository.findUserByEmail(email);
-        String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		System.out.println("RECAPTACH RESPONSE: " + gRecaptchaResponse);
 
         if (user != null && user.isTwoFactorEnabled()) {
             response.sendRedirect("/checkcode");

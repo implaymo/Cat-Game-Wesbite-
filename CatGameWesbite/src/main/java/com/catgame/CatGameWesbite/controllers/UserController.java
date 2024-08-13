@@ -86,7 +86,6 @@ public class UserController {
         if (error != null) {
             model.addAttribute("error", "Invalid Credentials.");
         }   
-
         logger.info("User able to enter login page.");
         return "login-page";
     }
