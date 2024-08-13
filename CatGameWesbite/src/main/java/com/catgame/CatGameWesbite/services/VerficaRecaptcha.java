@@ -12,6 +12,6 @@ public class VerficaRecaptcha {
 		if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
 			return false;
 		}
+        return false;
     }
-    return false;
 }
