@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.repository.UserRepository;
+import com.catgame.CatGameWesbite.services.VerficaRecaptcha;
 
 
 
@@ -19,6 +20,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Autowired
     private UserRepository userRepository;
+    private VerficaRecaptcha verficaRecaptcha;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -29,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         LoginUser user = userRepository.findUserByEmail(email);
         String gRecaptchaResponse = request
 				.getParameter("g-recaptcha-response");
-		System.out.println(gRecaptchaResponse);
+		verficaRecaptcha.verify(gRecaptchaResponse);
         if (user != null && user.isTwoFactorEnabled()) {
             response.sendRedirect("/checkcode");
         } else {

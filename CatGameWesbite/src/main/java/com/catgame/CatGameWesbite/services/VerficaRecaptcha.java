@@ -13,11 +13,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
-import com.catgame.CatGameWesbite.controllers.UserController;
-
 public class VerficaRecaptcha {
 
-	    private static final Logger logger = LogManager.getLogger(VerficaRecaptcha.class);    
+	private static final Logger logger = LogManager.getLogger(VerficaRecaptcha.class);    
 
 
     public static final String API_URL = "https://www.google.com/recaptcha/api/siteverify";
@@ -67,7 +65,7 @@ public class VerficaRecaptcha {
 			}
    		}
 		   catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error: " + e);
 			return false;
 		} 
 	}
