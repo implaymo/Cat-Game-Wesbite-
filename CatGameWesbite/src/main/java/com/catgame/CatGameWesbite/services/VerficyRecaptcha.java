@@ -12,20 +12,22 @@ import javax.net.ssl.HttpsURLConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
+import io.github.cdimascio.dotenv.Dotenv;
 
-public class VerficaRecaptcha {
 
-	private static final Logger logger = LogManager.getLogger(VerficaRecaptcha.class);    
+public class VerficyRecaptcha {
+
+	private static Dotenv dotenv = Dotenv.load();
+	private static final Logger logger = LogManager.getLogger(VerficyRecaptcha.class);    
 
 
     public static final String API_URL = "https://www.google.com/recaptcha/api/siteverify";
-	public static final String SECRET = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+	public static final String SECRET = dotenv.get("GOOGLE_API_SECRET");
 	private final static String USER_AGENT = "Mozilla/5.0";
 
     public static boolean verify(String recaptchaResponse) throws IOException {
-
 		if (recaptchaResponse == null || "".equals(recaptchaResponse)) {
-			logger.info("Recaptcha wasnt provided or is null.");		
+			logger.info("Recaptcha wasn't provided or is null.");	
 			return false;
 		}
         try {
@@ -58,6 +60,7 @@ public class VerficaRecaptcha {
 			System.out.println("JSON RESPONSE \n" + jsonResponse);
 			logger.info("Parsed Json with success");
 			con.disconnect();		
+			logger.info("Disconnected from google api with success.");
 			return jsonResponse.getBoolean("success");	
 			} else { 
 				logger.error("ERROR, response code: " + responseCode);
