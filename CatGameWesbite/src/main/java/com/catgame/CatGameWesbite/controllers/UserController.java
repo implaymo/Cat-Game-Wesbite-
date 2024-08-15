@@ -81,7 +81,15 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+    public String login(@RequestParam(value = "error", required = false) String error, HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            String errorMessage = (String) session.getAttribute("error");
+            if (errorMessage != null) {
+                model.addAttribute("error", errorMessage);
+                session.removeAttribute("error");
+            }
+        }
         model.addAttribute("loginUser", new LoginUser()); 
         if (error != null) {
             model.addAttribute("error", "Invalid Credentials.");
@@ -133,7 +141,7 @@ public class UserController {
         }
         else {
             logger.error("User not found.");
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
          }
     }
 

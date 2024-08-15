@@ -27,7 +27,7 @@ public class VerficyRecaptcha {
 
     public static boolean verify(String recaptchaResponse) throws IOException {
 		if (recaptchaResponse == null || "".equals(recaptchaResponse)) {
-			logger.info("Recaptcha wasn't provided or is null.");	
+			logger.error("Recaptcha wasn't provided or is null.");	
 			return false;
 		}
         try {

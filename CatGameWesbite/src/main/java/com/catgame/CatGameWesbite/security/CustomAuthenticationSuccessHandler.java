@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.repository.UserRepository;
@@ -42,7 +44,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             }
         }
         else {
-            logger.error("Recaptcha isn't valid.");
+            HttpSession session = request.getSession();
+            session.setAttribute("error", "Recaptcha verification failed.");
             response.sendRedirect("/login");
         }
     }
