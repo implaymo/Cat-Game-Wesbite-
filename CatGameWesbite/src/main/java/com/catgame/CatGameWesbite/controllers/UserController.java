@@ -90,9 +90,11 @@ public class UserController {
                 session.removeAttribute("error");
             }
         }
+
         model.addAttribute("loginUser", new LoginUser()); 
         if (error != null) {
             model.addAttribute("error", "Invalid Credentials.");
+            logger.error("Invalid Credentials.");
         }   
         logger.info("User able to enter login page.");
         return "login-page";
