@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="DEBUG">
+<Configuration status="DEBUG" name="CatGameWebsite">
     <Appenders>
         <!-- Console Appender -->
         <Console name="Console" target="SYSTEM_OUT">
@@ -7,12 +7,12 @@
         </Console>
 
         <!-- File Appender -->
-        <File name="File" fileName="app.log" append="true">
+        <File name="File" fileName="logs/app.log" append="true">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
         </File>
         
         <!-- Rolling File Appender -->
-        <RollingFile name="RollingFile" fileName="app.log" filePattern="logs/app-%d{yyyy-MM-dd}.log.gz">
+        <RollingFile name="RollingFile" fileName="logs/app.log" filePattern="app-%d{yyyy-MM-dd}.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy />
