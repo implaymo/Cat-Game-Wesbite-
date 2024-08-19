@@ -46,3 +46,68 @@
 2024-08-18 12:56:16 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-08-18 12:56:16 INFO  HikariDataSource:349 - HikariPool-1 - Shutdown initiated...
 2024-08-18 12:56:16 INFO  HikariDataSource:351 - HikariPool-1 - Shutdown completed.
+2024-08-19 13:52:46 INFO  Version:21 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-19 13:52:46 INFO  CatGameWesbiteApplication:50 - Starting CatGameWesbiteApplication using Java 22.0.1 with PID 5888 (C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite\target\classes started by HP in C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite)
+2024-08-19 13:52:46 INFO  CatGameWesbiteApplication:654 - No active profile set, falling back to 1 default profile: "default"
+2024-08-19 13:52:46 INFO  ChangeableUrls:252 - The Class-Path manifest attribute in C:\Users\HP\.m2\repository\io\github\cdimascio\java-dotenv\5.2.2\java-dotenv-5.2.2.jar referenced one or more files that do not exist: file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-common-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/annotations-13.0.jar
+2024-08-19 13:52:46 INFO  DevToolsPropertyDefaultsPostProcessor:252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-19 13:52:46 INFO  DevToolsPropertyDefaultsPostProcessor:252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-19 13:52:48 INFO  RepositoryConfigurationDelegate:143 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-19 13:52:48 INFO  RepositoryConfigurationDelegate:211 - Finished Spring Data repository scanning in 95 ms. Found 1 JPA repository interface.
+2024-08-19 13:52:49 INFO  TomcatWebServer:111 - Tomcat initialized with port 8081 (http)
+2024-08-19 13:52:49 INFO  Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2024-08-19 13:52:50 INFO  StandardService:173 - Starting service [Tomcat]
+2024-08-19 13:52:50 INFO  StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-19 13:52:50 INFO  [/]:173 - Initializing Spring embedded WebApplicationContext
+2024-08-19 13:52:50 INFO  ServletWebServerApplicationContext:296 - Root WebApplicationContext: initialization completed in 3457 ms
+2024-08-19 13:52:50 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-19 13:52:50 INFO  Version:44 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-19 13:52:50 INFO  RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+2024-08-19 13:52:51 INFO  SpringPersistenceUnitInfo:87 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-19 13:52:51 INFO  HikariDataSource:109 - HikariPool-1 - Starting...
+2024-08-19 13:52:52 INFO  HikariPool:554 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38c6b6e4
+2024-08-19 13:52:52 INFO  HikariDataSource:122 - HikariPool-1 - Start completed.
+2024-08-19 13:52:53 INFO  JtaPlatformInitiator:59 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-19 13:52:54 INFO  LocalContainerEntityManagerFactoryBean:437 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 13:52:54 WARN  JpaBaseConfiguration$JpaWebConfiguration:236 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-19 13:52:54 INFO  InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-08-19 13:52:54 INFO  WelcomePageHandlerMapping:59 - Adding welcome page template: index
+2024-08-19 13:52:55 INFO  OptionalLiveReloadServer:59 - LiveReload server is running on port 35729
+2024-08-19 13:52:55 INFO  Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-8081"]
+2024-08-19 13:52:55 INFO  TomcatWebServer:243 - Tomcat started on port 8081 (http) with context path '/'
+2024-08-19 13:52:55 INFO  CatGameWesbiteApplication:56 - Started CatGameWesbiteApplication in 11.123 seconds (process running for 12.678)
+2024-08-19 13:52:58 INFO  [/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-19 13:52:58 INFO  DispatcherServlet:532 - Initializing Servlet 'dispatcherServlet'
+2024-08-19 13:52:58 INFO  DispatcherServlet:554 - Completed initialization in 1 ms
+2024-08-19 13:52:58 INFO  UserController:99 - User able to enter login page.
+2024-08-19 13:53:00 INFO  UserController:99 - User able to enter login page.
+2024-08-19 13:53:20 INFO  CustomUserDetailsService:48 - User authenticated with email: guy@gmail.com
+2024-08-19 13:53:21 INFO  VerficyRecaptcha:50 - Successfully connect with google api.
+2024-08-19 13:53:21 INFO  VerficyRecaptcha:61 - Parsed Json with success
+2024-08-19 13:53:21 INFO  VerficyRecaptcha:63 - Disconnected from google api with success.
+2024-08-19 13:53:21 INFO  CustomAuthenticationSuccessHandler:39 - Recaptcha was validated with success.
+2024-08-19 13:53:21 INFO  CustomAuthenticationSuccessHandler:43 - User guy@gmail.com login with success.
+2024-08-19 13:55:43 INFO  CustomLogoutSuccessHandler:21 - User 'guy@gmail.com' logged out successfully.
+2024-08-19 13:55:43 INFO  UserController:99 - User able to enter login page.
+2024-08-19 13:55:47 INFO  UserController:60 - User able to enter registration page.
+2024-08-19 13:56:00 INFO  UserService:41 - New user created.
+2024-08-19 13:56:00 INFO  UserController:74 - Registration with success.
+2024-08-19 13:56:00 INFO  UserController:99 - User able to enter login page.
+2024-08-19 13:56:09 INFO  CustomUserDetailsService:48 - User authenticated with email: theguy@gmail.com
+2024-08-19 13:56:10 INFO  VerficyRecaptcha:50 - Successfully connect with google api.
+2024-08-19 13:56:10 INFO  VerficyRecaptcha:61 - Parsed Json with success
+2024-08-19 13:56:10 INFO  VerficyRecaptcha:63 - Disconnected from google api with success.
+2024-08-19 13:56:10 INFO  CustomAuthenticationSuccessHandler:39 - Recaptcha was validated with success.
+2024-08-19 13:56:10 INFO  CustomAuthenticationSuccessHandler:43 - User theguy@gmail.com login with success.
+2024-08-19 13:56:17 INFO  CustomLogoutSuccessHandler:21 - User 'theguy@gmail.com' logged out successfully.
+2024-08-19 13:56:17 INFO  UserController:99 - User able to enter login page.
+2024-08-19 13:56:35 INFO  CustomUserDetailsService:48 - User authenticated with email: guy@gmail.com
+2024-08-19 13:56:35 INFO  VerficyRecaptcha:50 - Successfully connect with google api.
+2024-08-19 13:56:35 INFO  VerficyRecaptcha:61 - Parsed Json with success
+2024-08-19 13:56:35 INFO  VerficyRecaptcha:63 - Disconnected from google api with success.
+2024-08-19 13:56:35 INFO  CustomAuthenticationSuccessHandler:39 - Recaptcha was validated with success.
+2024-08-19 13:56:35 INFO  CustomAuthenticationSuccessHandler:43 - User guy@gmail.com login with success.
+2024-08-19 13:58:55 INFO  UserController:138 - Highscore updated successfully.
+2024-08-19 13:59:38 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 13:59:38 INFO  HikariDataSource:349 - HikariPool-1 - Shutdown initiated...
+2024-08-19 13:59:38 INFO  HikariDataSource:351 - HikariPool-1 - Shutdown completed.
