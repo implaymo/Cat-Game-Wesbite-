@@ -111,3 +111,86 @@
 2024-08-19 13:59:38 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-08-19 13:59:38 INFO  HikariDataSource:349 - HikariPool-1 - Shutdown initiated...
 2024-08-19 13:59:38 INFO  HikariDataSource:351 - HikariPool-1 - Shutdown completed.
+2024-08-19 14:07:40 INFO  Version:21 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-19 14:07:40 INFO  CatGameWesbiteApplication:50 - Starting CatGameWesbiteApplication using Java 22.0.1 with PID 13044 (C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite\target\classes started by HP in C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite)
+2024-08-19 14:07:40 INFO  CatGameWesbiteApplication:654 - No active profile set, falling back to 1 default profile: "default"
+2024-08-19 14:07:40 INFO  ChangeableUrls:252 - The Class-Path manifest attribute in C:\Users\HP\.m2\repository\io\github\cdimascio\java-dotenv\5.2.2\java-dotenv-5.2.2.jar referenced one or more files that do not exist: file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-common-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/annotations-13.0.jar
+2024-08-19 14:07:40 INFO  DevToolsPropertyDefaultsPostProcessor:252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-19 14:07:40 INFO  DevToolsPropertyDefaultsPostProcessor:252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-19 14:07:42 INFO  RepositoryConfigurationDelegate:143 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-19 14:07:42 INFO  RepositoryConfigurationDelegate:211 - Finished Spring Data repository scanning in 105 ms. Found 1 JPA repository interface.
+2024-08-19 14:07:43 INFO  TomcatWebServer:111 - Tomcat initialized with port 8081 (http)
+2024-08-19 14:07:43 INFO  Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2024-08-19 14:07:43 INFO  StandardService:173 - Starting service [Tomcat]
+2024-08-19 14:07:43 INFO  StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-19 14:07:43 INFO  [/]:173 - Initializing Spring embedded WebApplicationContext
+2024-08-19 14:07:43 INFO  ServletWebServerApplicationContext:296 - Root WebApplicationContext: initialization completed in 3169 ms
+2024-08-19 14:07:44 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-19 14:07:44 INFO  Version:44 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-19 14:07:44 INFO  RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+2024-08-19 14:07:44 INFO  SpringPersistenceUnitInfo:87 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-19 14:07:45 INFO  HikariDataSource:109 - HikariPool-1 - Starting...
+2024-08-19 14:07:45 INFO  HikariPool:554 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3032dd39
+2024-08-19 14:07:45 INFO  HikariDataSource:122 - HikariPool-1 - Start completed.
+2024-08-19 14:07:46 INFO  JtaPlatformInitiator:59 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-19 14:07:46 INFO  LocalContainerEntityManagerFactoryBean:437 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 14:07:47 WARN  JpaBaseConfiguration$JpaWebConfiguration:236 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-19 14:07:47 INFO  InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-08-19 14:07:47 INFO  WelcomePageHandlerMapping:59 - Adding welcome page template: index
+2024-08-19 14:07:48 INFO  OptionalLiveReloadServer:59 - LiveReload server is running on port 35729
+2024-08-19 14:07:48 INFO  Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-8081"]
+2024-08-19 14:07:48 INFO  TomcatWebServer:243 - Tomcat started on port 8081 (http) with context path '/'
+2024-08-19 14:07:48 INFO  CatGameWesbiteApplication:56 - Started CatGameWesbiteApplication in 9.018 seconds (process running for 10.521)
+2024-08-19 14:07:49 INFO  [/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-19 14:07:49 INFO  DispatcherServlet:532 - Initializing Servlet 'dispatcherServlet'
+2024-08-19 14:07:49 INFO  DispatcherServlet:554 - Completed initialization in 2 ms
+2024-08-19 14:07:52 INFO  CustomLogoutSuccessHandler:21 - User 'guy@gmail.com' logged out successfully.
+2024-08-19 14:07:52 INFO  UserController:99 - User able to enter login page.
+2024-08-19 14:07:55 INFO  UserController:60 - User able to enter registration page.
+2024-08-19 14:08:11 ERROR UserController:67 - Passwords do not match.
+2024-08-19 14:08:19 INFO  UserService:41 - New user created.
+2024-08-19 14:08:19 INFO  UserController:74 - Registration with success.
+2024-08-19 14:08:19 INFO  UserController:99 - User able to enter login page.
+2024-08-19 14:08:29 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 14:08:29 INFO  HikariDataSource:349 - HikariPool-1 - Shutdown initiated...
+2024-08-19 14:08:29 INFO  HikariDataSource:351 - HikariPool-1 - Shutdown completed.
+2024-08-19 14:10:24 INFO  Version:21 - HV000001: Hibernate Validator 8.0.1.Final
+2024-08-19 14:10:24 INFO  CatGameWesbiteApplication:50 - Starting CatGameWesbiteApplication using Java 22.0.1 with PID 2140 (C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite\target\classes started by HP in C:\Users\HP\OneDrive\Área de Trabalho\CatGameWesbite\CatGameWesbite)
+2024-08-19 14:10:24 INFO  CatGameWesbiteApplication:654 - No active profile set, falling back to 1 default profile: "default"
+2024-08-19 14:10:24 INFO  ChangeableUrls:252 - The Class-Path manifest attribute in C:\Users\HP\.m2\repository\io\github\cdimascio\java-dotenv\5.2.2\java-dotenv-5.2.2.jar referenced one or more files that do not exist: file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/kotlin-stdlib-common-1.4.0.jar,file:/C:/Users/HP/.m2/repository/io/github/cdimascio/java-dotenv/5.2.2/annotations-13.0.jar
+2024-08-19 14:10:24 INFO  DevToolsPropertyDefaultsPostProcessor:252 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-19 14:10:24 INFO  DevToolsPropertyDefaultsPostProcessor:252 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-08-19 14:10:26 INFO  RepositoryConfigurationDelegate:143 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-19 14:10:26 INFO  RepositoryConfigurationDelegate:211 - Finished Spring Data repository scanning in 82 ms. Found 1 JPA repository interface.
+2024-08-19 14:10:27 INFO  TomcatWebServer:111 - Tomcat initialized with port 8081 (http)
+2024-08-19 14:10:27 INFO  Http11NioProtocol:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2024-08-19 14:10:27 INFO  StandardService:173 - Starting service [Tomcat]
+2024-08-19 14:10:27 INFO  StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-19 14:10:27 INFO  [/]:173 - Initializing Spring embedded WebApplicationContext
+2024-08-19 14:10:27 INFO  ServletWebServerApplicationContext:296 - Root WebApplicationContext: initialization completed in 2919 ms
+2024-08-19 14:10:28 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-19 14:10:28 INFO  Version:44 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-19 14:10:28 INFO  RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+2024-08-19 14:10:28 INFO  SpringPersistenceUnitInfo:87 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-19 14:10:28 INFO  HikariDataSource:109 - HikariPool-1 - Starting...
+2024-08-19 14:10:29 INFO  HikariPool:554 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d8b394e
+2024-08-19 14:10:29 INFO  HikariDataSource:122 - HikariPool-1 - Start completed.
+2024-08-19 14:10:31 INFO  JtaPlatformInitiator:59 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-19 14:10:31 INFO  LocalContainerEntityManagerFactoryBean:437 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 14:10:31 WARN  JpaBaseConfiguration$JpaWebConfiguration:236 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-19 14:10:32 INFO  InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113 - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-08-19 14:10:32 INFO  WelcomePageHandlerMapping:59 - Adding welcome page template: index
+2024-08-19 14:10:33 INFO  OptionalLiveReloadServer:59 - LiveReload server is running on port 35729
+2024-08-19 14:10:33 INFO  Http11NioProtocol:173 - Starting ProtocolHandler ["http-nio-8081"]
+2024-08-19 14:10:33 INFO  TomcatWebServer:243 - Tomcat started on port 8081 (http) with context path '/'
+2024-08-19 14:10:33 INFO  CatGameWesbiteApplication:56 - Started CatGameWesbiteApplication in 10.071 seconds (process running for 11.468)
+2024-08-19 14:10:33 INFO  [/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-19 14:10:33 INFO  DispatcherServlet:532 - Initializing Servlet 'dispatcherServlet'
+2024-08-19 14:10:33 INFO  DispatcherServlet:554 - Completed initialization in 0 ms
+2024-08-19 14:10:33 INFO  UserController:60 - User able to enter registration page.
+2024-08-19 14:10:47 INFO  UserService:41 - New user created.
+2024-08-19 14:10:47 INFO  UserController:74 - Registration with success.
+2024-08-19 14:10:52 INFO  UserController:99 - User able to enter login page.
+2024-08-19 14:10:54 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-19 14:10:54 INFO  HikariDataSource:349 - HikariPool-1 - Shutdown initiated...
+2024-08-19 14:10:54 INFO  HikariDataSource:351 - HikariPool-1 - Shutdown completed.
