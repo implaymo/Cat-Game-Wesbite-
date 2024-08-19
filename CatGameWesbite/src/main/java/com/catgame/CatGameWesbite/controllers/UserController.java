@@ -32,6 +32,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.catgame.CatGameWesbite.repository.UserRepository;
+import com.catgame.CatGameWesbite.security.CustomPasswordValidation;
 
 import org.springframework.security.core.Authentication;
 import net.bytebuddy.utility.RandomString;
@@ -52,6 +53,7 @@ public class UserController {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+    
 
 
     @GetMapping("/registration")
@@ -62,21 +64,27 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute RegisterDto registerDto, Model model) {
+    public String registration(@ModelAttribute RegisterDto registerDto, Model model, CustomPasswordValidation customPasswordValidation) {
         if (!registerDto.getPassword().equals(registerDto.getConfirmPassword())) {
             logger.error("Passwords do not match.");
             model.addAttribute("error", "Passwords do not match.");
             return "registration-page";
         }
-
-        try {
-            userService.registerUser(registerDto); 
-            logger.info("Registration with success.");
-            return "redirect:/successregistration"; 
-        } catch (Exception e) {
-            logger.error("Registration failed.");
-            model.addAttribute("error", "Registration failed: " + e.getMessage());
+        if (!customPasswordValidation.passwordStrenght(registerDto.getPassword())){
+            logger.error("Password must check all the requirements.");
+            model.addAttribute("error", "Password must check all the requirements.");
             return "registration-page";
+        }
+        else{
+            try {
+                userService.registerUser(registerDto); 
+                logger.info("Registration with success.");
+                return "redirect:/successregistration"; 
+            } catch (Exception e) {
+                logger.error("Registration failed.");
+                model.addAttribute("error", "Registration failed: " + e.getMessage());
+                return "registration-page";
+            }
         }
     }
 

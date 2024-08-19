@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.catgame.CatGameWesbite.dto.RegisterDto;
 import com.catgame.CatGameWesbite.models.LoginUser;
 import com.catgame.CatGameWesbite.repository.UserRepository;
-import com.catgame.CatGameWesbite.security.CustomPasswordValidation;
 
 
 
@@ -33,8 +32,6 @@ public class UserService {
             logger.error("User already exists with email: " + registerDto.getEmail());
             throw new RuntimeException("User already exists with email: " + registerDto.getEmail());
         }
-
-        
 
         LoginUser newUser = new LoginUser();
         newUser.setName(registerDto.getName());

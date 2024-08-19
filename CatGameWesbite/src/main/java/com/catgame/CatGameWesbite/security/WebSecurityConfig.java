@@ -53,4 +53,8 @@ public class WebSecurityConfig {
        return new BCryptPasswordEncoder(); 
     } 
 
+    @Bean CustomPasswordValidation customPasswordValidation() {
+        return new CustomPasswordValidation();
+    }
+
 }
