@@ -5,36 +5,34 @@ Cat Game Website is a Spring Boot-based web application that offers a fun game w
 
 ## Features
 
-- Interactive Game: A simple game where users must click on a cat as many times as possible within 30 seconds.
-- User Authentication: Secure user registration and login using Spring Security.
-- Two-Factor Authentication (2FA): Optional 2FA for added security during login.
-- Score Tracking: The application records and displays the user’s highest score.
-- User Management: Users must register and log in to access the game.
-- Password Recovery: Users can request a password reset link via email if they forget their password.
-- Email Notifications: Sends an email with a password reset link using Gmail (or other mail providers).
+- **Interactive Game**: A simple game where users must click on a cat as many times as possible within 30 seconds.
+- **User Authentication**: Secure user registration and login using Spring Security.
+- **Two-Factor Authentication (2FA)**: Optional 2FA for added security during login.
+- **Score Tracking**: The application records and displays the user’s highest score.
+- **User Management**: Users must register and log in to access the game.
+- **Password Recovery**: Users can request a password reset link via email if they forget their password.
+- **Email Notifications**: Sends an email with a password reset link using Gmail (or other mail providers).
 ## Technologies Used
 
-- Java
-- Spring Boot
-- Spring Security
-- JavaScript
-- Maven
-- MySQL (for user and high score storage)
-- Gmail API (for email notifications, configurable for other providers)
+- `Java`
+- `Spring Boot`
+- `Spring Security`
+- `JavaScript`
+- `Maven`
+- `MySQL (for user and highscore storage)`
+- `Gmail API (for email notifications, configurable for other providers)`
 
 ## Installation and Setup
 
 1. Clone the repository:
 
-´´´bash
-
-git clone https://github.com/your-username/cat-game-wesbite.git
+    ´´´bash
+    git clone https://github.com/your-username/cat-game-wesbite.git
 
 2. Navigate to the project directory:
 
-´´´bash
-
-cd cat-game-website
+    ´´´bash
+    cd cat-game-website
 
 3. Configure MySQL Database:
 
