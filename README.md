@@ -26,21 +26,21 @@ Cat Game Website is a Spring Boot-based web application that offers a fun game w
 
 1. Clone the repository:
 
-    ´´´bash
+    ```bash
     git clone https://github.com/your-username/cat-game-wesbite.git
 
 2. Navigate to the project directory:
 
-    ´´´bash
+    ```bash
     cd cat-game-website
 
 3. Configure MySQL Database:
 
 - Create a file named secret.properties in the src/main/resources directory with the following content:
 
-db.url=jdbc:mysql://localhost:3306/your-database-name
-db.username=your-username
-db.password=your-password
+`db.url=jdbc:mysql://localhost:3306/your-database-name`
+`db.username=your-username`
+`db.password=your-password`
 
 - Ensure your application.properties imports secret.properties:
 
