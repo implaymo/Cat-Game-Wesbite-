@@ -32,45 +32,45 @@ Cat Game Website is a Spring Boot-based web application that offers a fun game w
 2. Navigate to the project directory:
 
     ```bash
-    cd cat-game-website
+    cd cat-game-wesbite
 
 3. Configure MySQL Database:
 
 - Create a file named secret.properties in the src/main/resources directory with the following content:
 
-`db.url=jdbc:mysql://localhost:3306/your-database-name`
-`db.username=your-username`
-`db.password=your-password`
+    - `db.url=jdbc:mysql://localhost:3306/your-database-name`
+    - `db.username=your-username`
+    - `db.password=your-password`
 
 - Ensure your application.properties imports secret.properties:
-
-spring.config.import=secret.properties
+    
+    - `spring.config.import=secret.properties`
 
 4. Configure Email Service:
 
-- Create a file named application.yml in the src/main/resources directory with the following content:
-
-spring:
-  mail:
-    host: smtp.gmail.com
-    username: your-email@gmail.com
-    password: your-app-password
-    port: 587
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+    - Create a file named application.yml in the src/main/resources directory with the following content:
+    ```bash
+        spring:
+          mail:
+            host: smtp.gmail.com
+            username: your-email@gmail.com
+            password: your-app-password
+            port: 587
+            properties:
+              mail:
+                smtp:
+                  auth: true
+                  starttls:
+                    enable: true
 
 5. Build and Run the Application:
 
-´´´bash
-mvn spring-boot:run
+    ```bash
+    mvn spring-boot:run
 
 6. Access the Application:
 
-Open a browser and navigate to http://localhost:8080.
+- `Open a browser and navigate to http://localhost:8081.`
 
 ## How to Play
 1. Register for an account or log in if you already have one.
@@ -83,4 +83,4 @@ Open a browser and navigate to http://localhost:8080.
 - Implement leaderboard functionality to compare scores globally.
 - Improve the UI/UX for a better user experience.
 
-Make sure to replace your-email@gmail.com, your-app-password, and your-database-name with your actual credentials and database details.
+Make sure to replace `your-email@gmail.com` , `your-app-password`, and `your-database-name` with your actual credentials and database details.
